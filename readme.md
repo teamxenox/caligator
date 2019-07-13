@@ -1,4 +1,4 @@
-# caligator
+# Caligator
 
 > The best calculator ever
 
