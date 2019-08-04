@@ -76,10 +76,10 @@ const operate = (operator, operand1, operand2) => {
         case '*':
             return operand2 * operand1;
         case '%':
-            if(operand1 === 0) throw new Exception("Divide by Zero Exception Occurred !");
+            if(operand1 === 0) throw "Divide by Zero Exception Occurred !!";
             return operand2 % operand1;
         case '/':
-            if(operand1 === 0) throw new Exception("Divide by Zero Exception Occurred !"); 
+            if(operand1 === 0) throw "Divide by Zero Exception Occurred !!"; 
             return operand2 / operand1;
     }
 };
@@ -96,5 +96,6 @@ const hasPrecedence = (op1, op2) => {
 
 module.exports = {
     evalExp,
-    hasPrecedence
+    hasPrecedence,
+    operate
 };
