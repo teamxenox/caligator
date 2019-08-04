@@ -48,7 +48,6 @@ const evalExp = (expression) => {
 };
 
 const getTokens = exp => {
-    // exp.split(/\+|\-|\*|\/|\(|\)/)
     let tokens = [];
     let operand = "";
 
@@ -63,8 +62,9 @@ const getTokens = exp => {
         }
     }
     tokens.push(operand);
+    // filter out any junk/spaces
+    tokens = tokens.filter(token => token !== '');
     return tokens;
-
 };
 
 const operate = (operator, operand1, operand2) => {
@@ -97,5 +97,6 @@ const hasPrecedence = (op1, op2) => {
 module.exports = {
     evalExp,
     hasPrecedence,
-    operate
+    operate,
+    getTokens
 };

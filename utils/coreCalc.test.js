@@ -24,6 +24,16 @@ const hasPrecedenceTestCases = [
     ['/', '-', false],  
 ];
 
+const evalExpTestCases = [
+    ['3 + 4 - 20', -13],
+    ['7 - 3', 4],
+    ['2 * 5 + 3', 13],
+    ['6 * (3 + 4)', 42],
+    ['33/2', 16.5],
+    ['33%2', 1],
+    ['(((5+4) - (3*2)) / 3)', 1]
+];
+
 describe("operate", () => {
     operateTestCases.forEach((testCase) => {
         it(`${testCase[2]} ${testCase[0]} ${testCase[1]} = ${testCase[3]}`, () => {
@@ -39,3 +49,13 @@ describe("hasPrecedence", () => {
         })
     });
 });
+
+describe("Evaluate Expression", () => {
+    evalExpTestCases.forEach((testCase) => {
+        it(`${testCase[0]} = ${testCase[1]}`, () => {
+            assert.equal(coreCalc.evalExp(testCase[0]), testCase[1]);
+        });
+    });
+});
+
+console.log(coreCalc.evalExp('6 * (3+4)'));
