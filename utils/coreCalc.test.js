@@ -21,7 +21,11 @@ const hasPrecedenceTestCases = [
     ['*', '+', false],
     ['/', '+', false],  
     ['*', '-', false],  
-    ['/', '-', false],  
+    ['/', '-', false],
+    ['+', '|', false],
+    ['&', '-', true],
+    ['^', '+', true],
+    ['*', '**', true]  
 ];
 
 const evalExpTestCases = [
