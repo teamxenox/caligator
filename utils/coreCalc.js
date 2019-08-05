@@ -1,14 +1,17 @@
 "use strict";
 
 // set the operators to be used 
-const operators = ['+', '-', '*', '/', '%', '(', ')', '**'];
+const operators = ['+', '-', '*', '/', '%', '(', ')', '**', '|', '&', '^'];
 const precedence = {
-    '+': 1,
-    '-': 1,
-    '*': 2,
-    '/': 2,
-    '%': 2,
-    '**': 3 
+    '|': 0,
+    '^': 1,
+    '&': 2,
+    '+': 3,
+    '-': 3,
+    '*': 4,
+    '/': 4,
+    '%': 4,
+    '**': 5 
 };
 
 const evalExp = (expression) => {
@@ -101,6 +104,12 @@ const operate = (operator, operand1, operand2) => {
             return operand2 / operand1;
         case '**':
             return Math.pow(operand2, operand1);
+        case '&':
+            return operand2 & operand1;
+        case '|':
+            return operand1 | operand2;
+        case '^':
+            return operand1 ^ operand2;
     }
 };
 
