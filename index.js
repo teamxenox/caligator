@@ -86,7 +86,7 @@ app.on('activate', async () => {
 	mainWindow = await createMainWindow();
 
 	const favoriteCalculator = config.get('favoriteCalculator');
-	mainWindow.webContents.executeJavaScript(
-		`document.querySelector('header p').textContent = 'Your favorite calculator  is ${favoriteCalculator}'`
-	);
+	// mainWindow.webContents.executeJavaScript(
+	// 	`document.querySelector('header p').textContent = 'Your favorite calculator  is ${favoriteCalculator}'`
+	// );
 })();
