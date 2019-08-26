@@ -2,6 +2,7 @@
 	--background-color: #000;
 	--primary-text-color: #fff;
 	--secondary-bg-color: #4a4a4a;
+	--font-size: 16px;
 }
 
 html,
@@ -24,6 +25,7 @@ body {
 		'Apple Color Emoji',
 		'Segoe UI Emoji',
 		'Segoe UI Symbol';
+	font-size: var(--font-size);
 	text-rendering: optimizeLegibility;
 	font-feature-settings: 'liga', 'clig', 'kern';
 	background:	 var(--background-color);
@@ -38,18 +40,25 @@ body {
 }
 
 .main {
-
 	display: flex;
 	flex: 1;
-	flex-direction: row;
+	flex-direction: column;
 	position: relative;
 	padding: 15px;
 }
 
+.calculation {
+	display: flex;
+	flex-direction: row;
+	min-height: 18px;
+	margin-bottom: 2px;
+	padding: 2px;
+}
 .calculation-area {
 	border: none;
 	flex: 1;
 	outline: none;
+
 }
 
 .result {
