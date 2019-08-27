@@ -1,8 +1,14 @@
+:root {
+	--background-color: #000;
+	--primary-text-color: #fff;
+	--secondary-bg-color: #4a4a4a;
+	--font-size: 16px;
+}
+
 html,
 body {
 	padding: 0;
 	margin: 0;
-	background: transparent;
 }
 
 /* Use OS default fonts */
@@ -19,25 +25,55 @@ body {
 		'Apple Color Emoji',
 		'Segoe UI Emoji',
 		'Segoe UI Symbol';
+	font-size: var(--font-size);
 	text-rendering: optimizeLegibility;
 	font-feature-settings: 'liga', 'clig', 'kern';
+	background:	 var(--background-color);
+	color: var(--primary-text-color);
 }
 
-header {
-	position: absolute;
-	width: 500px;
-	height: 250px;
-	top: 50%;
-	left: 50%;
-	margin-top: -125px;
-	margin-left: -250px;
-	text-align: center;
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
 }
 
-header h1 {
-	font-size: 60px;
-	font-weight: 200;
-	margin: 0;
-	padding: 0;
-	opacity: 0.7;
+.main {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	position: relative;
+	padding: 15px;
+}
+
+.calculation {
+	display: flex;
+	flex-direction: row;
+	min-height: 18px;
+	margin-bottom: 2px;
+	padding: 2px;
+}
+.calculation-area {
+	border: none;
+	flex: 1;
+	outline: none;
+
+}
+
+.result {
+	width: 100px;
+}
+
+footer {
+	align-items: center;
+	background: var(--secondary-bg-color);
+	display: flex;
+	flex-direction: row-reverse;
+	height: 50px;
+	width: 100vw;
+}
+
+footer span {
+	margin-right: 10px;
 }
