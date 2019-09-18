@@ -60,7 +60,6 @@ const filterValues = v => (v !== null && v !== undefined && v !== '' && v !== 't
 const parseInput = (inp, type, unit) => {
     inp = inp.split(type).filter(filterValues);
     let result = coreConv.convert(unit, ...inp);
-    console.log(unit, inp, result)
     return result
 }
 
