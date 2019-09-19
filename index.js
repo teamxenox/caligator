@@ -6,7 +6,7 @@ const { is } = require('electron-util');
 const unhandled = require('electron-unhandled');
 const debug = require('electron-debug');
 const contextMenu = require('electron-context-menu');
-const config = require('./config');
+// const config = require('./config');
 const menu = require('./menu');
 
 unhandled();
@@ -31,62 +31,67 @@ app.setAppUserModelId('com.company.AppName');
 let mainWindow;
 
 const createMainWindow = async () => {
-	const win = new BrowserWindow({
-		title: app.getName(),
-		show: false,
-		width: 600,
-		height: 400
-	});
+    const win = new BrowserWindow({
+        title: app.getName(),
+        center: true,
+        show: false,
+        minWidth: 250,
+        minHeight: 250,
+        maxWidth: 500,
+        maxHeight: 500,
+        titleBarStyle: 'hidden',
+        frame: false
+    });
 
-	win.on('ready-to-show', () => {
-		win.show();
-	});
+    win.on('ready-to-show', () => {
+        win.show();
+    });
 
-	win.on('closed', () => {
-		// Dereference the window
-		// For multiple windows store them in an array
-		mainWindow = undefined;
-	});
+    win.on('closed', () => {
+        // Dereference the window
+        // For multiple windows store them in an array
+        mainWindow = undefined;
+    });
 
-	await win.loadFile(path.join(__dirname, 'app', 'index.html'));
+    await win.loadFile(path.join(__dirname, 'app', 'index.html'));
 
-	return win;
+    return win;
 };
 
 // Prevent multiple instances of the app
 if (!app.requestSingleInstanceLock()) {
-	app.quit();
+    app.quit();
 }
 
 app.on('second-instance', () => {
-	if (mainWindow) {
-		if (mainWindow.isMinimized()) {
-			mainWindow.restore();
-		}
+    if (mainWindow) {
+        if (mainWindow.isMinimized()) {
+            mainWindow.restore();
+        }
 
-		mainWindow.show();
-	}
+        mainWindow.show();
+    }
 });
 
 app.on('window-all-closed', () => {
-	if (!is.macos) {
-		app.quit();
-	}
+    if (!is.macos) {
+        app.quit();
+    }
 });
 
 app.on('activate', async () => {
-	if (!mainWindow) {
-		mainWindow = await createMainWindow();
-	}
+    if (!mainWindow) {
+        mainWindow = await createMainWindow();
+    }
 });
 
 (async () => {
-	await app.whenReady();
-	Menu.setApplicationMenu(menu);
-	mainWindow = await createMainWindow();
+    await app.whenReady();
+    Menu.setApplicationMenu(menu);
+    mainWindow = await createMainWindow();
 
-	const favoriteCalculator = config.get('favoriteCalculator');
-	// mainWindow.webContents.executeJavaScript(
-	// 	`document.querySelector('header p').textContent = 'Your favorite calculator  is ${favoriteCalculator}'`
-	// );
+    // const favoriteCalculator = config.get('favoriteCalculator');
+    // mainWindow.webContents.executeJavaScript(
+    // 	`document.querySelector('header p').textContent = 'Your favorite calculator  is ${favoriteCalculator}'`
+    // );
 })();

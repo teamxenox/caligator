@@ -1,79 +1,76 @@
 :root {
-	--background-color: #000;
-	--primary-text-color: #fff;
-	--secondary-bg-color: #4a4a4a;
-	--font-size: 16px;
+    --background-color: #fff;
+    --primary-color: #353535;
+    --primary-text-color: #06d6a0;
+    --secondary-text-color: #96939b;
+    --font-size: 16px;
 }
 
 html,
 body {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size);
 }
 
-/* Use OS default fonts */
 body {
-	font-family: -apple-system,
-		BlinkMacSystemFont,
-		'Segoe UI',
-		Roboto,
-		Oxygen-Sans,
-		Ubuntu,
-		Cantarell,
-		'Helvetica Neue',
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji',
-		'Segoe UI Symbol';
-	font-size: var(--font-size);
-	text-rendering: optimizeLegibility;
-	font-feature-settings: 'liga', 'clig', 'kern';
-	background:	 var(--background-color);
-	color: var(--primary-text-color);
+    font-family: -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        Oxygen-Sans,
+        Ubuntu,
+        Cantarell,
+        'Helvetica Neue',
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol';
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga', 'clig', 'kern';
+    background: var(--background-color);
+    color: var(--primary-color);
+    letter-spacing: 1px;
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	width: 100vw;
+.app__title {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    margin: 0;
+    text-align: center;
+    color: var(--primary-color);
+    text-transform: uppercase
 }
 
-.main {
-	display: flex;
-	flex: 1;
-	flex-direction: column;
-	position: relative;
-	padding: 15px;
+.app__container {
+    display: flex;
+    height: 100vh;
+    padding: 1rem;
 }
 
-.calculation {
-	display: flex;
-	flex-direction: row;
-	min-height: 18px;
-	margin-bottom: 2px;
-	padding: 2px;
-}
-.calculation-area {
-	border: none;
-	flex: 1;
-	outline: none;
-
+.app__body {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
 }
 
-.result {
-	width: 100px;
+.app__input,
+.app__output {
+    width: 50%;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 2px;
 }
 
-footer {
-	align-items: center;
-	background: var(--secondary-bg-color);
-	display: flex;
-	flex-direction: row-reverse;
-	height: 50px;
-	width: 100vw;
+.app__input {
+    border: none;
+    outline: none;
+    color: var(--secondary-text-color);
+    background: transparent;
+    resize: none;
+    height: 100vh;
 }
 
-footer span {
-	margin-right: 10px;
+.app__output {
+    color: var(--primary-text-color);
 }

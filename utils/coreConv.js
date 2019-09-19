@@ -83,5 +83,7 @@ const convertLength = (value, oldUnit, newUnit) => {
 };
 
 module.exports = {
-	convert
+    convert,
+    lengthUnits,
+    weightUnits
 };
