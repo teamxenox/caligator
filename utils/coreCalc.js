@@ -69,7 +69,8 @@ const evalExp = (expression) => {
     }
 
     // The values stack will end up with the final value to be popped
-    return values.pop();
+    const result = values[values.length - 1];
+    return isNaN(result) ? '' : result;
 };
 
 /**
