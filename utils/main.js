@@ -69,6 +69,8 @@ const parseInput = (inp, type, unit) => {
  * @returns {number}
  */
 const main = exp => {
+    exp = exp.toLowerCase();
+
     if (lengthRegExp.test(exp)) {
         return parseInput(exp, lengthRegExp, 'l');
     } else if (weightRegExp.test(exp)) {
