@@ -79,7 +79,6 @@ const main = exp => {
         })
         return coreCalc.evalExp(exp)
     }
-
 }
 
 module.exports = main;

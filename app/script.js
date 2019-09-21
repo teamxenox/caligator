@@ -26,8 +26,32 @@ inputContainer.addEventListener('keyup', (e) => {
  * @private
  */
 
- // FIXME : Output position for multiline input
+// FIXME : Output position for multiline input
 function evaluate(arr) {
     var output = arr.map((each) => main(each));
     outputContainer.innerText = output.join("\n");
 }
+
+(function () {
+
+    const { BrowserWindow } = require('electron').remote;
+
+    function init() {
+        document.getElementById("app--minimize").addEventListener("click", function (e) {
+            var window = BrowserWindow.getFocusedWindow();
+            window.minimize();
+        });
+
+        document.getElementById("app--close").addEventListener("click", function (e) {
+            var window = BrowserWindow.getFocusedWindow();
+            window.close();
+        });
+    };
+
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            init();
+        }
+    };
+
+})();

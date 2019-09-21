@@ -39,7 +39,6 @@ const createMainWindow = async () => {
         minHeight: 250,
         maxWidth: 500,
         maxHeight: 500,
-        titleBarStyle: 'hidden',
         frame: false
     });
 

@@ -33,13 +33,44 @@ body {
     letter-spacing: 1px;
 }
 
+.app__head {
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    padding: 0.75rem;
+}
+
 .app__title {
     font-size: 0.75rem;
-    padding: 0.25rem;
     margin: 0;
     text-align: center;
     color: var(--primary-color);
-    text-transform: uppercase
+    text-transform: uppercase;
+}
+
+.app__controls {
+    -webkit-app-region: no-drag;
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+}
+
+.app__controls>button {
+    all: unset;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    font-size: 16px;
+    margin: 2px;
+    line-height: 0;
+    text-align: center;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.app__controls>button:hover {
+    opacity: 1;
 }
 
 .app__container {
