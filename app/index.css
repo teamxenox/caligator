@@ -8,6 +8,10 @@
     --icon-color: var(--icon-black);
 }
 
+* {
+    box-sizing: border-box
+}
+
 html,
 body {
     padding: 0;
@@ -47,7 +51,7 @@ body {
 }
 
 .modal__body {
-    padding: 1rem 2rem;
+    padding: 3rem 2rem 1rem
 }
 
 .modal__head,
@@ -57,6 +61,9 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
+    background: var(--light-color);
+    width: 100vw;
 }
 
 .modal__title,
@@ -110,7 +117,7 @@ body {
 .app__container {
     display: flex;
     height: 100vh;
-    padding: 1rem 2rem;
+    padding: 3rem 2rem 1rem;
 }
 
 .app__body {
@@ -155,6 +162,11 @@ body.dark>.modal {
 body.dark .modal__title,
 body.dark .app__title {
     color: var(--light-color);
+}
+
+body.dark .modal__head,
+body.dark .app__head {
+    background: var(--dark-color);
 }
 
 body.dark .app__input {
