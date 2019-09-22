@@ -35,10 +35,8 @@ const createMainWindow = async () => {
         title: app.getName(),
         center: true,
         show: false,
-        minWidth: 250,
-        minHeight: 250,
-        maxWidth: 500,
-        maxHeight: 500,
+        width: 500,
+        height: 500,
         frame: false
     });
 

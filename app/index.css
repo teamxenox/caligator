@@ -1,9 +1,11 @@
 :root {
-    --background-color: #fff;
-    --primary-color: #353535;
-    --primary-text-color: #06d6a0;
-    --secondary-text-color: #96939b;
+    --light-color: #fff;
+    --dark-color: #353535;
+    --text-color: #06d6a0;
     --font-size: 16px;
+    --icon-white: invert(100%) sepia(100%) saturate(0%) hue-rotate(121deg) brightness(107%) contrast(104%);
+    --icon-black: invert(0%) sepia(10%) saturate(7500%) hue-rotate(16deg) brightness(108%) contrast(93%);
+    --icon-color: var(--icon-black);
 }
 
 html,
@@ -28,55 +30,87 @@ body {
         'Segoe UI Symbol';
     text-rendering: optimizeLegibility;
     font-feature-settings: 'liga', 'clig', 'kern';
-    background: var(--background-color);
-    color: var(--primary-color);
+    background: var(--light-color);
+    color: var(--dark-color);
     letter-spacing: 1px;
+    -webkit-app-region: drag
 }
 
+.modal {
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    position: absolute;
+    background: var(--light-color);
+    overflow: hidden;
+    display: none;
+}
+
+.modal__body {
+    padding: 1rem 2rem;
+}
+
+.modal__head,
 .app__head {
+    padding: 1rem;
     -webkit-app-region: drag;
-    -webkit-user-select: none;
-    padding: 0.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
+.modal__title,
 .app__title {
     font-size: 0.75rem;
     margin: 0;
     text-align: center;
-    color: var(--primary-color);
+    color: var(--dark-color);
     text-transform: uppercase;
 }
 
+.modal__controls,
 .app__controls {
     -webkit-app-region: no-drag;
-    position: fixed;
-    top: 0.75rem;
-    left: 0.75rem;
 }
 
-.app__controls>button {
-    all: unset;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    font-size: 16px;
-    margin: 2px;
-    line-height: 0;
-    text-align: center;
-    box-sizing: border-box;
-    color: #000;
+.modal__controls,
+.app__controls>i:nth-child(odd) {
+    margin-right: 4px;
+}
+
+.modal__controls,
+.app__controls>i:hover {
+    opacity: 1;
+}
+
+.icon {
     cursor: pointer;
     opacity: 0.5;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 12px;
+    background-position: bottom;
+    width: 12px;
+    height: 12px;
+    filter: invert(19%) sepia(6%) saturate(19%) hue-rotate(82deg) brightness(95%) contrast(91%);
 }
 
-.app__controls>button:hover {
-    opacity: 1;
+.icon--minimize {
+    background-image: url('../static/minimize.svg');
+}
+
+.icon--close {
+    background-image: url('../static/close.svg');
+}
+
+.icon--settings {
+    background-image: url('../static//menu.svg')
 }
 
 .app__container {
     display: flex;
     height: 100vh;
-    padding: 1rem;
+    padding: 1rem 2rem;
 }
 
 .app__body {
@@ -96,12 +130,37 @@ body {
 .app__input {
     border: none;
     outline: none;
-    color: var(--secondary-text-color);
+    color: var(--dark-color);
     background: transparent;
     resize: none;
     height: 100vh;
 }
 
 .app__output {
-    color: var(--primary-text-color);
+    color: var(--text-color);
+}
+
+
+/* Dark Mode */
+
+body.dark {
+    background: var(--dark-color);
+    color: var(--light-color);
+}
+
+body.dark>.modal {
+    background: var(--dark-color);
+}
+
+body.dark .modal__title,
+body.dark .app__title {
+    color: var(--light-color);
+}
+
+body.dark .app__input {
+    color: var(--light-color)
+}
+
+body.dark .icon {
+    filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
 }

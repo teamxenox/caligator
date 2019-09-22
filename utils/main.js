@@ -31,15 +31,19 @@ const weightUnits = Object.keys(coreConv.weightUnits).join('|');
  * @param {string} units
  * @private
  */
-const generateRegExp = units => new RegExp(`^(\\d+(\\.\\d*)?\\s*)(${units})\\s*(to)\\s*(${units})\\s*$`, 'm');
-
-
-/** @const {object} */
-const lengthRegExp = generateRegExp(lengthUnits);
+const generateRegExpForUnits = units => new RegExp(`^(\\d+(\\.\\d*)?\\s*)(${units})\\s*(to)\\s*(${units})\\s*$`, 'm');
 
 /** @const {object} */
-const weightRegExp = generateRegExp(weightUnits);
+const lengthRegExp = generateRegExpForUnits(lengthUnits);
 
+/** @const {object} */
+const weightRegExp = generateRegExpForUnits(weightUnits);
+
+/** @const {object} */
+const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
+
+/** @const {object} */
+const percentageRegExp = new RegExp(/(\d+)\s*(%\s*of)\s*(\d+)/, 'm')
 /**
  * This function filters the given value with
  * filter conditions :  null, undefined, empty or to
@@ -69,6 +73,8 @@ const parseInput = (inp, type, unit) => {
  * @returns {number}
  */
 const main = exp => {
+    if (commentRegExp.test(exp)) return "";
+
     if (lengthRegExp.test(exp)) {
         return parseInput(exp, lengthRegExp, 'l');
     } else if (weightRegExp.test(exp)) {

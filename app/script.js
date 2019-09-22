@@ -2,6 +2,8 @@
 
 const main = require('../utils/main');
 
+// Main
+
 /** @type {String} */
 let inputContainer = document.getElementsByClassName('app__input')[0];
 
@@ -32,6 +34,14 @@ function evaluate(arr) {
     outputContainer.innerText = output.join("\n");
 }
 
+// Controls
+
+/** @const {Object} */
+const appPopup = document.getElementsByClassName('modal')[0];
+/**
+ * This function adds the window controls to the application
+ * @private
+ */
 (function () {
 
     const { BrowserWindow } = require('electron').remote;
@@ -46,6 +56,18 @@ function evaluate(arr) {
             var window = BrowserWindow.getFocusedWindow();
             window.close();
         });
+
+        document.getElementById('app--settings').addEventListener('click', () => {
+            appPopup.style.display = 'block'
+        })
+
+        document.getElementById('modal__popup--close').addEventListener('click', () => {
+            appPopup.style.display = 'none'
+        })
+
+        document.getElementById('color-switcher').addEventListener('click', () => {
+            document.getElementsByTagName('body')[0].classList.toggle('dark')
+        })
     };
 
     document.onreadystatechange = function () {
