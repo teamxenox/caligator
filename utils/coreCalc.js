@@ -126,10 +126,8 @@ const operate = (operator, operand1, operand2) => {
         case '*':
             return operand2 * operand1;
         case '%':
-            if (operand1 === 0) throw 'Divide by Zero Exception Occurred !!';
             return operand2 % operand1;
         case '/':
-            if (operand1 === 0) throw 'Divide by Zero Exception Occurred !!';
             return operand2 / operand1;
         case '**':
             return Math.pow(operand2, operand1);
