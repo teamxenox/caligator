@@ -73,6 +73,8 @@ const parseInput = (inp, type, unit) => {
  * @returns {number}
  */
 const main = exp => {
+    exp = exp.toLowerCase();
+    
     if (commentRegExp.test(exp)) return "";
 
     if (lengthRegExp.test(exp)) {
