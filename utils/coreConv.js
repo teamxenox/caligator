@@ -41,6 +41,12 @@ const lengthUnits = {
 	mi: 0.0006213712
 };
 
+// The supported temperature units
+/*
+ * The property is the abbreviation of supported units.
+ */
+const temperatureUnits = ['c', 'f', 'k'];
+
 /**
  * This is a function to perform conversion
  * @param {String} mode - Type of conversion
@@ -55,6 +61,8 @@ const convert = (mode, value, oldUnit, newUnit) => {
 			return convertWeight(value, oldUnit, newUnit);
 		case 'l':
 			return convertLength(value, oldUnit, newUnit);
+		case 't':
+			return convertTemperature(value, oldUnit, newUnit);
 	}
 };
 
@@ -82,8 +90,36 @@ const convertLength = (value, oldUnit, newUnit) => {
 	return (value / lengthUnits[oldUnit]) * lengthUnits[newUnit];
 };
 
+/**
+ * This is a function to perform temperature conversion
+ * @param {Number} value - Value on which conversion is to be performed
+ * @param {String} oldUnit - Unit to be converted from
+ * @param {String} newUnit - Unit to be converted to
+ * @returns {Number} - result after performing conversion
+ */
+const convertTemperature = (value, oldUnit, newUnit) => {
+	value = Number(value);
+
+	if (oldUnit === newUnit) {
+		return value;
+	} else if (oldUnit === 'c' && newUnit === 'f') {
+		return (9 / 5 * value) + 32;
+	} else if (oldUnit === 'k' && newUnit === 'f') {
+		return (9 / 5 * (value - 273)) + 32;
+	} else if (oldUnit === 'f' && newUnit === 'c') {
+		return (5 / 9 * (value - 32));
+	} else if (oldUnit === 'c' && newUnit === 'k') {
+		return value + 273;
+	} else if (oldUnit === 'k' && newUnit === 'c') {
+		return value - 273;
+	} else if (oldUnit === 'f' && newUnit === 'k') {
+		return (5 / 9(value - 32)) + 273;
+	}
+};
+
 module.exports = {
     convert,
     lengthUnits,
-    weightUnits
+		weightUnits,
+		temperatureUnits
 };

@@ -25,6 +25,9 @@ const lengthUnits = Object.keys(coreConv.lengthUnits).join('|');
 /** @const {string} */
 const weightUnits = Object.keys(coreConv.weightUnits).join('|');
 
+/** @const {string} */
+const temperatureUnits = coreConv.temperatureUnits.join('|');
+
 /**
  * This function generates a RegExp for the given units
  * @example generate(km|cm|in)
@@ -38,6 +41,9 @@ const lengthRegExp = generateRegExpForUnits(lengthUnits);
 
 /** @const {object} */
 const weightRegExp = generateRegExpForUnits(weightUnits);
+
+/** @const {object} */
+const temperatureRegExp = generateRegExpForUnits(temperatureUnits);
 
 /** @const {object} */
 const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
@@ -74,13 +80,15 @@ const parseInput = (inp, type, unit) => {
  */
 const main = exp => {
     exp = exp.toLowerCase();
-    
+
     if (commentRegExp.test(exp)) return "";
 
     if (lengthRegExp.test(exp)) {
         return parseInput(exp, lengthRegExp, 'l');
     } else if (weightRegExp.test(exp)) {
         return parseInput(exp, weightRegExp, 'w');
+    } else if (temperatureRegExp.test(exp)) {
+        return parseInput(exp, temperatureRegExp, 't');
     } else {
         Object.keys(textForOperators).forEach(each => {
             exp = exp.replace(each, textForOperators[each])
