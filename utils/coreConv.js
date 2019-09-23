@@ -1,5 +1,8 @@
 'use strict';
 
+const config = require('../store');
+const money = require('../dist/money');
+
 // The supported weight units
 /*
  * The property is the abbreviation of supported units.
@@ -48,6 +51,17 @@ const lengthUnits = {
 const temperatureUnits = ['c', 'f', 'k'];
 
 /**
+ * get cached currency rates
+ */
+const currencyUnits = config.get('rates');
+
+/**
+ * Setup money.fx for currencry conversion
+ */
+money.fx.base = "USD";
+money.fx.rates = currencyUnits;
+
+/**
  * This is a function to perform conversion
  * @param {String} mode - Type of conversion
  * @param {Number} value - Value on which conversion is to be performed
@@ -63,6 +77,8 @@ const convert = (mode, value, oldUnit, newUnit) => {
 			return convertLength(value, oldUnit, newUnit);
 		case 't':
 			return convertTemperature(value, oldUnit, newUnit);
+		case 'c':
+			return convertCurrency(value, oldUnit, newUnit);
 	}
 };
 
@@ -117,9 +133,22 @@ const convertTemperature = (value, oldUnit, newUnit) => {
 	}
 };
 
+/**
+ * This is a function to perform currency conversion
+ * @param {Number} value - Value on which conversion is to be performed
+ * @param {String} oldUnit - Unit to be converted from
+ * @param {String} newUnit - Unit to be converted to
+ * @returns {Number} - result after performing conversion
+ */
+const convertCurrency = (value, oldUnit, newUnit) => {
+	if (oldUnit === newUnit) return value;
+	return money.fx.convert(Number(value), {from: oldUnit, to: newUnit}).toFixed(2);
+};
+
 module.exports = {
     convert,
     lengthUnits,
 		weightUnits,
-		temperatureUnits
+		temperatureUnits,
+		currencyUnits
 };

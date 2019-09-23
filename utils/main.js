@@ -28,13 +28,16 @@ const weightUnits = Object.keys(coreConv.weightUnits).join('|');
 /** @const {string} */
 const temperatureUnits = coreConv.temperatureUnits.join('|');
 
+/** @const {string} */
+const currencyUnits = Object.keys(coreConv.currencyUnits).join('|');
+
 /**
  * This function generates a RegExp for the given units
  * @example generate(km|cm|in)
  * @param {string} units
  * @private
  */
-const generateRegExpForUnits = units => new RegExp(`^(\\d+(\\.\\d*)?\\s*)(${units})\\s*(to)\\s*(${units})\\s*$`, 'm');
+const generateRegExpForUnits = units => new RegExp(`^(\\d+(\\.\\d*)?\\s*)(${units})\\s*(to|TO)\\s*(${units})\\s*$`, 'm');
 
 /** @const {object} */
 const lengthRegExp = generateRegExpForUnits(lengthUnits);
@@ -44,6 +47,9 @@ const weightRegExp = generateRegExpForUnits(weightUnits);
 
 /** @const {object} */
 const temperatureRegExp = generateRegExpForUnits(temperatureUnits);
+
+/** @const {object} */
+const currencyRegExp = generateRegExpForUnits(currencyUnits);
 
 /** @const {object} */
 const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
@@ -58,7 +64,7 @@ const percentageRegExp = new RegExp(/(\d+)\s*(%\s*of)\s*(\d+)/, 'm')
  * @returns {boolean} - result after filtering
  * @private
  */
-const filterValues = v => (v !== null && v !== undefined && v !== '' && v !== 'to');
+const filterValues = v => (v !== null && v !== undefined && v !== '' && v !== 'to' && v !== 'TO');
 
 /**
  * This function parses the given expression with the provided regExp and passes the values to the core modules
@@ -89,6 +95,8 @@ const main = exp => {
         return parseInput(exp, weightRegExp, 'w');
     } else if (temperatureRegExp.test(exp)) {
         return parseInput(exp, temperatureRegExp, 't');
+    } else if (currencyRegExp.test(exp.toUpperCase())) {
+        return parseInput(exp.toUpperCase(), currencyRegExp, 'c');
     } else {
         Object.keys(textForOperators).forEach(each => {
             exp = exp.replace(each, textForOperators[each])
