@@ -1,12 +1,13 @@
 module.exports = async function(config) {
 	// cache currency conversion rates
 	if (config.has('rates')) {
-		const h24ms = new Date().getTime() + 1 * 24 * 60 * 60 * 1000;
+        const hours = 1;
+		const intervalInMilliseconds = new Date().getTime() + 1 * hours * 60 * 60 * 1000;
 
 		/**
 		 * if rates are more than 24h old make sure to cache new Rates
 		 */
-		if (h24ms < config.get('last_cached')) {
+		if (intervalInMilliseconds < config.get('last_cached')) {
 			await cacheRates();
 		}
 	} else {
