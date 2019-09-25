@@ -2,6 +2,7 @@
 
 const config = require('../store');
 const money = require('../lib/money');
+const defaultRates = require('./defaultRates');
 
 // The supported weight units
 /*
@@ -53,12 +54,12 @@ const temperatureUnits = ['c', 'f', 'k'];
 /**
  * get cached currency rates
  */
-const currencyUnits = config.get('rates');
+const currencyUnits = config.has('rates') ? config.get('rates') : defaultRates;
 
 /**
  * Setup money.fx for currencry conversion
  */
-money.fx.base = "USD";
+money.fx.base = 'USD';
 money.fx.rates = currencyUnits;
 
 /**
@@ -119,17 +120,17 @@ const convertTemperature = (value, oldUnit, newUnit) => {
 	if (oldUnit === newUnit) {
 		return value;
 	} else if (oldUnit === 'c' && newUnit === 'f') {
-		return (9 / 5 * value) + 32;
+		return (9 / 5) * value + 32;
 	} else if (oldUnit === 'k' && newUnit === 'f') {
-		return (9 / 5 * (value - 273)) + 32;
+		return (9 / 5) * (value - 273) + 32;
 	} else if (oldUnit === 'f' && newUnit === 'c') {
-		return (5 / 9 * (value - 32));
+		return (5 / 9) * (value - 32);
 	} else if (oldUnit === 'c' && newUnit === 'k') {
 		return value + 273;
 	} else if (oldUnit === 'k' && newUnit === 'c') {
 		return value - 273;
 	} else if (oldUnit === 'f' && newUnit === 'k') {
-		return (5 / 9(value - 32)) + 273;
+		return 5 / 9(value - 32) + 273;
 	}
 };
 
@@ -142,13 +143,15 @@ const convertTemperature = (value, oldUnit, newUnit) => {
  */
 const convertCurrency = (value, oldUnit, newUnit) => {
 	if (oldUnit === newUnit) return value;
-	return money.fx.convert(Number(value), {from: oldUnit, to: newUnit}).toFixed(2);
+	return money.fx
+		.convert(Number(value), { from: oldUnit, to: newUnit })
+		.toFixed(2);
 };
 
 module.exports = {
-    convert,
-    lengthUnits,
-		weightUnits,
-		temperatureUnits,
-		currencyUnits
+	convert,
+	lengthUnits,
+	weightUnits,
+	temperatureUnits,
+	currencyUnits
 };
