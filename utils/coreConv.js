@@ -1,7 +1,7 @@
 'use strict';
 
 const config = require('../store');
-const money = require('../dist/money');
+const money = require('../lib/money');
 
 // The supported weight units
 /*
