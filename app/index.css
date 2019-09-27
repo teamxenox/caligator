@@ -1,7 +1,7 @@
 :root {
     --light-color: #fff;
     --dark-color: #353535;
-    --text-color: #06d6a0;
+    --result-text-color: #06d6a0;
     --font-size: 16px;
     --icon-white: invert(100%) sepia(100%) saturate(0%) hue-rotate(121deg) brightness(107%) contrast(104%);
     --icon-black: invert(0%) sepia(10%) saturate(7500%) hue-rotate(16deg) brightness(108%) contrast(93%);
@@ -90,6 +90,19 @@ body {
     opacity: 1;
 }
 
+.theme-switcher {
+    display: flex;
+}
+
+
+label {
+    font-size: 0.75rem;
+}
+
+label::after {
+    content: ':';
+}
+
 .icon {
     cursor: pointer;
     opacity: 0.5;
@@ -144,35 +157,43 @@ body {
 }
 
 .app__output {
-    color: var(--text-color);
+    color: var(--result-text-color);
 }
 
 
 /* Dark Mode */
 
-body.dark {
+
+[data-theme^="dark"] body {
     background: var(--dark-color);
     color: var(--light-color);
 }
 
-body.dark>.modal {
+
+[data-theme^="dark"] .modal {
     background: var(--dark-color);
 }
 
-body.dark .modal__title,
-body.dark .app__title {
+
+[data-theme^="dark"] .modal__title,
+
+[data-theme^="dark"] .app__title {
     color: var(--light-color);
 }
 
-body.dark .modal__head,
-body.dark .app__head {
+
+[data-theme^="dark"] .modal__head,
+
+[data-theme^="dark"] .app__head {
     background: var(--dark-color);
 }
 
-body.dark .app__input {
+
+[data-theme^="dark"] .app__input {
     color: var(--light-color)
 }
 
-body.dark .icon {
+
+[data-theme^="dark"] .icon {
     filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
 }

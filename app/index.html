@@ -4,6 +4,23 @@
 <head>
     <meta charset="utf-8">
     <title>Caligator</title>
+    <script>
+        window.loadTheme = () => {
+            let userTheme = localStorage.user_theme
+            let OSTheme = localStorage.os_theme
+            let defaultTheme = 'auto';
+            if (userTheme === "auto" || !userTheme) {
+                document.documentElement.setAttribute(
+                    'data-theme', OSTheme
+                )
+            } else {
+                document.documentElement.setAttribute(
+                    'data-theme', userTheme
+                )
+            }
+        }
+        loadTheme()
+    </script>
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -17,7 +34,13 @@
             </div>
         </header>
         <div class="modal__body">
-            <p><input type="checkbox" id="color-switcher">Dark mode</p>
+            <label for="theme-switcher">Theme</label>
+
+            <select id="theme-switcher">
+                <option value="auto" selected>Auto</option>
+                <option value="dark">Dark Mode</option>
+                <option value="light">Light Mode</option>
+            </select>
         </div>
     </div>
 

@@ -84,9 +84,11 @@ const parseInput = (inp, type, unit) => {
  * @param {string} exp - provides user input, that can be an equation or conversion. But not both, yet.
  * @returns {number}
  */
+
+ // TODO: refactor
 const main = exp => {
     exp = exp.toLowerCase();
-    
+
     if (commentRegExp.test(exp)) return "";
 
     exp = exp.split(')');

@@ -1,6 +1,32 @@
 "use strict";
 
 const main = require('../utils/main');
+const { remote } = require('electron')
+
+// by default OS theme
+// user theme has high precedence
+// os theme and user theme applied then USer theme
+// user theme and OS theme applied then User theme
+if (process.platform == 'darwin') {
+    const { systemPreferences } = remote
+
+    const defaultTheme = () => {
+        if (window.localStorage.user_theme === undefined || window.localStorage.user_theme === "auto") {
+            window.localStorage.os_theme = systemPreferences.isDarkMode() ? 'dark' : 'light';
+
+            if ('loadTheme' in window) {
+                window.loadTheme();
+            }
+        }
+    }
+
+    systemPreferences.subscribeNotification(
+        'AppleInterfaceThemeChangedNotification',
+        defaultTheme,
+    )
+
+    defaultTheme()
+}
 
 // Main
 
@@ -30,7 +56,7 @@ inputContainer.addEventListener('keyup', (e) => {
 
 // FIXME : Output position for multiline input
 function evaluate(arr) {
-    var output = arr.map((each) => main(each));
+    let output = arr.map((each) => main(each));
     outputContainer.innerText = output.join("\n");
 }
 
@@ -38,6 +64,7 @@ function evaluate(arr) {
 
 /** @const {Object} */
 const appPopup = document.getElementsByClassName('modal')[0];
+
 /**
  * This function adds the window controls to the application
  * @private
@@ -47,13 +74,13 @@ const appPopup = document.getElementsByClassName('modal')[0];
     const { BrowserWindow } = require('electron').remote;
 
     function init() {
-        document.getElementById("app--minimize").addEventListener("click", function (e) {
-            var window = BrowserWindow.getFocusedWindow();
+        document.getElementById("app--minimize").addEventListener("click", () => {
+            let window = BrowserWindow.getFocusedWindow();
             window.minimize();
         });
 
-        document.getElementById("app--close").addEventListener("click", function (e) {
-            var window = BrowserWindow.getFocusedWindow();
+        document.getElementById("app--close").addEventListener("click", () => {
+            let window = BrowserWindow.getFocusedWindow();
             window.close();
         });
 
@@ -65,14 +92,27 @@ const appPopup = document.getElementsByClassName('modal')[0];
             appPopup.style.display = 'none'
         })
 
-        document.getElementById('color-switcher').addEventListener('click', () => {
-            document.getElementsByTagName('body')[0].classList.toggle('dark')
+        document.getElementById('theme-switcher').addEventListener('change', (e) => {
+            let userTheme = e.target.value;
+            if (userTheme == "auto") {
+                document.documentElement.setAttribute('data-theme', window.localStorage.os_theme || 'light')
+            } else {
+                document.documentElement.setAttribute('data-theme', userTheme)
+            }
+            window.localStorage.user_theme = userTheme;
         })
     };
 
-    document.onreadystatechange = function () {
+    document.onreadystatechange = () => {
         if (document.readyState == "complete") {
             init();
+            let userTheme = window.localStorage.user_theme || window.localStorage.os_theme || "light";
+            if (userTheme == "auto") {
+                document.documentElement.setAttribute('data-theme', window.localStorage.os_theme || 'light')
+            } else {
+                document.documentElement.setAttribute('data-theme', userTheme)
+            }
+            document.getElementById('theme-switcher').value = userTheme;
         }
     };
 
