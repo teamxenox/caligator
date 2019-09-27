@@ -3,6 +3,9 @@
 const coreCalc = require('./coreCalc');
 const coreConv = require('./coreConv');
 
+var prefix = '';
+
+
 /** @const {Object} */
 const textForOperators = {
     'plus': '+',
@@ -56,6 +59,13 @@ const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
 
 /** @const {object} */
 const percentageRegExp = new RegExp(/(\d+)\s*(%\s*of)\s*(\d+)/, 'm')
+
+/** @const {object} */
+var simple = new RegExp(/(\w{1,3}\s*to\s+\w{1,3})/, 'im');
+
+/** @const {object} */
+var compound = new RegExp(/(to\s+\w{1,3})(.*)/, 'im');
+
 /**
  * This function filters the given value with
  * filter conditions :  null, undefined, empty or to
@@ -75,34 +85,73 @@ const filterValues = v => (v !== null && v !== undefined && v !== '' && v !== 't
  */
 const parseInput = (inp, type, unit) => {
     inp = inp.split(type).filter(filterValues);
+    prefix = inp[2];
     let result = coreConv.convert(unit, ...inp);
     return result
 }
+
 
 /**
  * This is main function which parses and sends the values to the core modules
  * @param {string} exp - provides user input, that can be an equation or conversion. But not both, yet.
  * @returns {number}
  */
+
+ // TODO: refactor
 const main = exp => {
     exp = exp.toLowerCase();
 
     if (commentRegExp.test(exp)) return "";
 
-    if (lengthRegExp.test(exp)) {
-        return parseInput(exp, lengthRegExp, 'l');
-    } else if (weightRegExp.test(exp)) {
-        return parseInput(exp, weightRegExp, 'w');
-    } else if (temperatureRegExp.test(exp)) {
-        return parseInput(exp, temperatureRegExp, 't');
-    } else if (currencyRegExp.test(exp.toUpperCase())) {
+    exp = exp.split(')');
+    let out = [];
+
+    exp.forEach(each => {
+        each = each.trim();
+
+        each = each.replace(/[(]{1,}/, '');
+
+        if (lengthRegExp.test(each)) {
+            out.push(parseInput(each, lengthRegExp, 'l'));
+        } else if (weightRegExp.test(each)) {
+            out.push(parseInput(each, weightRegExp, 'w'));
+        }  else if (currencyRegExp.test(exp.toUpperCase())) {
         return parseInput(exp.toUpperCase(), currencyRegExp, 'c');
-    } else {
-        Object.keys(textForOperators).forEach(each => {
-            exp = exp.replace(each, textForOperators[each])
-        })
-        return coreCalc.evalExp(exp)
-    }
+        } else {
+            if (simple.test(each)) {
+                each = "1 " + each;
+                if (lengthRegExp.test(each)) {
+                    out.push(parseInput(each, lengthRegExp, 'l'));
+                } else if (weightRegExp.test(each)) {
+                    out.push(parseInput(each, weightRegExp, 'w'));
+                }
+            } else if (compound.test(each)) {
+                var temp = each.split(compound).filter(filterValues);
+
+                temp[0] = "1 " + prefix + temp[0].trim();
+                if (lengthRegExp.test(temp[0])) {
+                    out.push(parseInput(temp[0], lengthRegExp, 'l'));
+                } else if (weightRegExp.test(temp[0])) {
+                    out.push(parseInput(temp[0], weightRegExp, 'w'));
+                }
+
+                out.push(temp[1] ? temp[1].trim() : null);
+            } else {
+                out.push(each)
+            }
+        }
+
+    });
+
+    return coreCalc.evalExp(out.map((each, index) => {
+        if (index !== 0 && each) {
+            return /^[\/\+\-\*]/.test(each) ? each : "*" + each
+        } else {
+            return each
+        }
+    }).join(''))
+
 }
+
 
 module.exports = main;
