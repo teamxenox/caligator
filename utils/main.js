@@ -97,7 +97,7 @@ const parseInput = (inp, type, unit) => {
  * @returns {number}
  */
 
- // TODO: refactor
+// TODO: refactor
 const main = exp => {
     exp = exp.toLowerCase();
 
@@ -115,8 +115,8 @@ const main = exp => {
             out.push(parseInput(each, lengthRegExp, 'l'));
         } else if (weightRegExp.test(each)) {
             out.push(parseInput(each, weightRegExp, 'w'));
-        }  else if (currencyRegExp.test(exp.toUpperCase())) {
-        return parseInput(exp.toUpperCase(), currencyRegExp, 'c');
+        } else if (currencyRegExp.test(each.toUpperCase())) {
+            out.push(parseInput(each.toUpperCase(), currencyRegExp, 'c'));
         } else {
             if (simple.test(each)) {
                 each = "1 " + each;
