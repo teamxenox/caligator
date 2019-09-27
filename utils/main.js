@@ -28,19 +28,31 @@ const lengthUnits = Object.keys(coreConv.lengthUnits).join('|');
 /** @const {string} */
 const weightUnits = Object.keys(coreConv.weightUnits).join('|');
 
+/** @const {string} */
+const temperatureUnits = coreConv.temperatureUnits.join('|');
+
+/** @const {string} */
+const currencyUnits = Object.keys(coreConv.currencyUnits).join('|');
+
 /**
  * This function generates a RegExp for the given units
  * @example generate(km|cm|in)
  * @param {string} units
  * @private
  */
-const generateRegExpForUnits = units => new RegExp(`^(\\d+(\\.\\d*)?\\s*)(${units})\\s*(to)\\s*(${units})\\s*$`, 'm');
+const generateRegExpForUnits = units => new RegExp(`^(\\d+(\\.\\d*)?\\s*)(${units})\\s*(to|TO)\\s*(${units})\\s*$`, 'm');
 
 /** @const {object} */
 const lengthRegExp = generateRegExpForUnits(lengthUnits);
 
 /** @const {object} */
 const weightRegExp = generateRegExpForUnits(weightUnits);
+
+/** @const {object} */
+const temperatureRegExp = generateRegExpForUnits(temperatureUnits);
+
+/** @const {object} */
+const currencyRegExp = generateRegExpForUnits(currencyUnits);
 
 /** @const {object} */
 const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
@@ -62,7 +74,7 @@ var compound = new RegExp(/(to\s+\w{1,3})(.*)/, 'im');
  * @returns {boolean} - result after filtering
  * @private
  */
-const filterValues = v => (v !== null && v !== undefined && v !== '' && v !== 'to');
+const filterValues = v => (v !== null && v !== undefined && v !== '' && v !== 'to' && v !== 'TO');
 
 /**
  * This function parses the given expression with the provided regExp and passes the values to the core modules
@@ -103,8 +115,9 @@ const main = exp => {
             out.push(parseInput(each, lengthRegExp, 'l'));
         } else if (weightRegExp.test(each)) {
             out.push(parseInput(each, weightRegExp, 'w'));
+        }  else if (currencyRegExp.test(exp.toUpperCase())) {
+        return parseInput(exp.toUpperCase(), currencyRegExp, 'c');
         } else {
-
             if (simple.test(each)) {
                 each = "1 " + each;
                 if (lengthRegExp.test(each)) {
@@ -137,6 +150,7 @@ const main = exp => {
             return each
         }
     }).join(''))
+
 }
 
 

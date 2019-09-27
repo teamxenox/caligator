@@ -6,8 +6,9 @@ const { is } = require('electron-util');
 const unhandled = require('electron-unhandled');
 const debug = require('electron-debug');
 const contextMenu = require('electron-context-menu');
-// const config = require('./config');
+const config = require('./store');
 const menu = require('./menu');
+const cacheRates = require('./utils/cacheRates');
 
 unhandled();
 debug();
@@ -40,8 +41,10 @@ const createMainWindow = async () => {
         frame: false
     });
 
-    win.on('ready-to-show', () => {
+    win.on('ready-to-show', async () => {
         win.show();
+
+        await cacheRates(config);
     });
 
     win.on('closed', () => {
