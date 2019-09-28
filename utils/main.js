@@ -103,8 +103,15 @@ const parseInput = (inp, type, unit) => {
 // TODO: refactor
 const main = exp => {
     exp = exp.toLowerCase();
+    exp = exp.trim();
 
+    // Ignores if starts with #
     if (commentRegExp.test(exp)) return "";
+
+    // Replaces the text alternatives for operators
+    Object.keys(textForOperators).forEach(operator => {
+        exp = exp.replace(operator, textForOperators[operator])
+    })
 
     exp = exp.split(')');
     let out = [];
@@ -119,6 +126,8 @@ const main = exp => {
             out.push(parseInput(each, ratioRegExp, 'r'));
         } else if (percentageRegExp.test(each)) {
             out.push(parseInput(each, percentageRegExp, 'p'));
+        } else if (temperatureRegExp.test(each)) {
+            out.push(parseInput(each, temperatureRegExp, 't'));
         } else if (lengthRegExp.test(each)) {
             out.push(parseInput(each, lengthRegExp, 'l'));
         } else if (weightRegExp.test(each)) {
