@@ -61,6 +61,9 @@ const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
 const percentageRegExp = new RegExp(/(\d+)\s*(%\s*of)\s*(\d+)/, 'm')
 
 /** @const {object} */
+const ratioRegExp = new RegExp(/(\d+\/\d+)\s*of\s*(\d+)/, 'm');
+
+/** @const {object} */
 var simple = new RegExp(/(\w{1,3}\s*to\s+\w{1,3})/, 'im');
 
 /** @const {object} */
@@ -111,7 +114,12 @@ const main = exp => {
 
         each = each.replace(/[(]{1,}/, '');
 
-        if (lengthRegExp.test(each)) {
+
+        if (ratioRegExp.test(each)) {
+            out.push(parseInput(each, ratioRegExp, 'r'));
+        } else if (percentageRegExp.test(each)) {
+            out.push(parseInput(each, percentageRegExp, 'p'));
+        } else if (lengthRegExp.test(each)) {
             out.push(parseInput(each, lengthRegExp, 'l'));
         } else if (weightRegExp.test(each)) {
             out.push(parseInput(each, weightRegExp, 'w'));
