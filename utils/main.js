@@ -119,6 +119,8 @@ const main = exp => {
             out.push(parseInput(each, ratioRegExp, 'r'));
         } else if (percentageRegExp.test(each)) {
             out.push(parseInput(each, percentageRegExp, 'p'));
+        } else if (temperatureRegExp.test(each)) {
+            out.push(parseInput(each, temperatureRegExp, 't'));
         } else if (lengthRegExp.test(each)) {
             out.push(parseInput(each, lengthRegExp, 'l'));
         } else if (weightRegExp.test(each)) {
