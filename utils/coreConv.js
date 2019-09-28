@@ -80,8 +80,36 @@ const convert = (mode, value, oldUnit, newUnit) => {
 			return convertTemperature(value, oldUnit, newUnit);
 		case 'c':
 			return convertCurrency(value, oldUnit, newUnit);
+		case 'r':
+			return convertRatio(value, oldUnit, newUnit);
+		case 'p':
+			return convertPercent(value, oldUnit, newUnit);
 	}
 };
+
+/**
+ * This is a function to perform weight conversion
+ * @param {Number} value - Value on which conversion is to be performed
+ * @param {String} oldUnit - Unit to be converted from
+ * @param {String} newUnit - Unit to be converted to
+ * @returns {Number} - result after performing conversion
+ */
+const convertRatio = (ratio, ofValue) => {
+	ratio = eval(ratio);
+	return ratio * ofValue;
+};
+
+/**
+ * This is a function to perform weight conversion
+ * @param {Number} value - Value on which conversion is to be performed
+ * @param {String} oldUnit - Unit to be converted from
+ * @param {String} newUnit - Unit to be converted to
+ * @returns {Number} - result after performing conversion
+ */
+const convertPercent = (percent, _, ofValue) => {
+	return (percent / 100) * ofValue;
+};
+
 
 /**
  * This is a function to perform weight conversion
