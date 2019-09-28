@@ -103,8 +103,15 @@ const parseInput = (inp, type, unit) => {
 // TODO: refactor
 const main = exp => {
     exp = exp.toLowerCase();
+    exp = exp.trim();
 
+    // Ignores if starts with #
     if (commentRegExp.test(exp)) return "";
+
+    // Replaces the text alternatives for operators
+    Object.keys(textForOperators).forEach(operator => {
+        exp = exp.replace(operator, textForOperators[operator])
+    })
 
     exp = exp.split(')');
     let out = [];

@@ -35,6 +35,10 @@ const evalExp = (expression) => {
     // remove the spaces from the expressions
     let exp = expression.replace(/\s/g, '');
 
+    // add 0 to the negative expressions
+    // TODO : handle negative numbers
+    if (exp[0] === '-') exp = 0 + exp;
+
     // extract the tokens from the expression
     // the token can be operators such as +, -, * , /
     // tokens can also be numbers such as 5, 34, 21, etc
