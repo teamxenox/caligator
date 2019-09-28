@@ -46,7 +46,7 @@ const evalExp = (expression) => {
 
     tokens.forEach(token => {
         if (!operators.includes(token)) {
-            values.push(parseInt(token));
+            values.push(parseFloat(token));
         } else if (token === '(') {
             ops.push(token);
         } else if (token === ')') {
