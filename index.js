@@ -32,66 +32,66 @@ app.setAppUserModelId('com.company.AppName');
 let mainWindow;
 
 const createMainWindow = async () => {
-    const win = new BrowserWindow({
-        title: app.getName(),
-        center: true,
-        show: false,
-        width: 500,
-        height: 500,
-        frame: false
-    });
+	const win = new BrowserWindow({
+		title: app.getName(),
+		center: true,
+		show: false,
+		width: 350,
+		height: 350,
+		frame: false
+	});
 
-    win.on('ready-to-show', async () => {
-        win.show();
+	win.on('ready-to-show', async () => {
+		win.show();
 
-        await cacheRates(config);
-    });
+		await cacheRates(config);
+	});
 
-    win.on('closed', () => {
-        // Dereference the window
-        // For multiple windows store them in an array
-        mainWindow = undefined;
-    });
+	win.on('closed', () => {
+		// Dereference the window
+		// For multiple windows store them in an array
+		mainWindow = undefined;
+	});
 
-    await win.loadFile(path.join(__dirname, 'app', 'index.html'));
+	await win.loadFile(path.join(__dirname, 'app', 'index.html'));
 
-    return win;
+	return win;
 };
 
 // Prevent multiple instances of the app
 if (!app.requestSingleInstanceLock()) {
-    app.quit();
+	app.quit();
 }
 
 app.on('second-instance', () => {
-    if (mainWindow) {
-        if (mainWindow.isMinimized()) {
-            mainWindow.restore();
-        }
+	if (mainWindow) {
+		if (mainWindow.isMinimized()) {
+			mainWindow.restore();
+		}
 
-        mainWindow.show();
-    }
+		mainWindow.show();
+	}
 });
 
 app.on('window-all-closed', () => {
-    if (!is.macos) {
-        app.quit();
-    }
+	if (!is.macos) {
+		app.quit();
+	}
 });
 
 app.on('activate', async () => {
-    if (!mainWindow) {
-        mainWindow = await createMainWindow();
-    }
+	if (!mainWindow) {
+		mainWindow = await createMainWindow();
+	}
 });
 
 (async () => {
-    await app.whenReady();
-    Menu.setApplicationMenu(menu);
-    mainWindow = await createMainWindow();
+	await app.whenReady();
+	Menu.setApplicationMenu(menu);
+	mainWindow = await createMainWindow();
 
-    // const favoriteCalculator = config.get('favoriteCalculator');
-    // mainWindow.webContents.executeJavaScript(
-    // 	`document.querySelector('header p').textContent = 'Your favorite calculator  is ${favoriteCalculator}'`
-    // );
+	// const favoriteCalculator = config.get('favoriteCalculator');
+	// mainWindow.webContents.executeJavaScript(
+	// 	`document.querySelector('header p').textContent = 'Your favorite calculator  is ${favoriteCalculator}'`
+	// );
 })();
