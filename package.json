@@ -1,7 +1,7 @@
 {
 	"name": "caligator",
 	"productName": "caligator",
-	"version": "0.0.0",
+	"version": "0.0.1-0",
 	"description": "The best app calculator ever",
 	"license": "MIT",
 	"repository": "sarthology/caligator",
