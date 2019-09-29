@@ -62,7 +62,6 @@ inputContainer.addEventListener('keyup', e => {
 // FIXME : Output position for multiline input
 function evaluate(arr) {
 	let output = arr.map(each => main(each));
-	console.log(output);
 	outputContainer.innerText = '';
 	output.forEach(value => {
 		let result = document.createElement('p');
