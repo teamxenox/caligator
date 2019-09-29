@@ -1,4 +1,4 @@
-<div align="center"><img src="https://user-images.githubusercontent.com/10527102/65829724-dadf1b00-e2c5-11e9-9906-a6922fa890f1.png"></div>
+<div align="center"><img src="https://user-images.githubusercontent.com/10527102/65829910-fc410680-e2c7-11e9-8caf-975fdb74b161.png"></div>
 
 # Caligator
 
