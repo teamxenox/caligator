@@ -1,3 +1,5 @@
+<div align="center"><img src="https://user-images.githubusercontent.com/10527102/65829724-dadf1b00-e2c5-11e9-9906-a6922fa890f1.png"></div>
+
 # Caligator
 
 > An open source kickass cross platform Calculator with power of alligator
@@ -33,10 +35,15 @@
 [**Download**](https://github.com/sarthology/caligator/releases/latest) the `.exe` file.
 
 
+## TODO
+- [ ] Export Options
+- [ ] Font size preferences
+- [ ] Click to copy
+- [ ] More themes 🎉
 ---
 
 
-## Dev
+## Contributing
 
 Built with [Electron](https://electronjs.org).
 
@@ -68,7 +75,7 @@ Then edit the automatically created GitHub Releases draft and publish.
 
 ## Links
 
-- [Product Hunt post](#)
+- [Product Hunt post](https://www.producthunt.com/posts/caligator)
 
 ## License
 
