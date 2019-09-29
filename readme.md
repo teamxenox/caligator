@@ -16,7 +16,7 @@
 
 ## Install
 
-*macOS 10.10+, Linux, and Windows 7+ are supported (64-bit only).*
+*macOS 10.10+, Linux, and Windows 7+ are supported (64-bit only for now).*
 
 ### macOS
 
