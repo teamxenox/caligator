@@ -158,7 +158,7 @@ const convertTemperature = (value, oldUnit, newUnit) => {
 	} else if (oldUnit === 'k' && newUnit === 'c') {
 		return value - 273;
 	} else if (oldUnit === 'f' && newUnit === 'k') {
-		return 5 / 9(value - 32) + 273;
+		return (5 / 9) * (value - 32) + 273;
 	}
 };
 
