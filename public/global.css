@@ -22,9 +22,40 @@ html, body {
     --dark-text-color: #ff8414;
     --result-text-color: #00ff76;
     --font-size: 16px;
-    --icon-white: invert(100%) sepia(100%) saturate(0%) hue-rotate(121deg) brightness(107%) contrast(104%);
-    --icon-black: invert(0%) sepia(10%) saturate(7500%) hue-rotate(16deg) brightness(108%) contrast(93%);
-    --icon-color: var(--icon-black);
+    --icon-light-filter: invert(19%) sepia(6%) saturate(19%) hue-rotate(82deg) brightness(95%) contrast(91%);
+    --icon-dark-filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
+
+    /* Default to Light */
+    --caligator-background: var(--light-color);
+    --caligator-text-color: var(--dark-color);
+    --caligator-input-text-color: var(--light-text-color);
+    --caligator-icon-filter: var(--icon-light-filter);
+}
+
+.force-dark {
+    /* Override to Dark */
+    --caligator-background: var(--dark-color);
+    --caligator-text-color: var(--light-color);
+    --caligator-input-text-color: var(--dark-text-color);
+    --caligator-icon-filter: var(--icon-dark-filter);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Default to Dark */
+        --caligator-background: var(--dark-color);
+        --caligator-text-color: var(--light-color);
+        --caligator-input-text-color: var(--dark-text-color);
+        --caligator-icon-filter: var(--icon-dark-filter);
+    }
+
+    .force-light {
+        /* Override to Light */
+        --caligator-background: var(--light-color);
+        --caligator-text-color: var(--dark-color);
+        --caligator-input-text-color: var(--light-text-color);
+        --caligator-icon-filter: var(--icon-light-filter);
+    }
 }
 
 html,
@@ -38,8 +69,8 @@ body {
     font-family: 'open_sansregular';
     text-rendering: optimizeLegibility;
     font-feature-settings: 'liga', 'clig', 'kern';
-    background: var(--light-color);
-    color: var(--dark-color);
+    background: var(--caligator-background);
+    color: var(--caligator-text-color);
     letter-spacing: 1px;
 }
 
@@ -52,34 +83,5 @@ body {
     background-position: bottom;
     width: 12px;
     height: 12px;
-    filter: invert(19%) sepia(6%) saturate(19%) hue-rotate(82deg) brightness(95%) contrast(91%);
+    filter: var(--caligator-icon-filter);
 }
-
-/* Dark Mode */
-.force-dark.app {
-    background: var(--dark-color) !important;
-    color: var(--light-color) !important;
-}
-
-.force-dark .modal {
-    background: var(--dark-color) !important;
-}
-
-.force-dark .modal__title,
-.force-dark .app__title {
-    color: var(--light-color) !important;
-}
-
-.force-dark .modal__head,
-.force-dark .app__head {
-    background: var(--dark-color) !important;
-}
-
-.force-dark .app__input {
-    color: var(--light-text-color) !important;
-}
-
-.force-dark .icon {
-    filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
-}
-
