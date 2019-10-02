@@ -55,14 +55,6 @@ body {
     filter: invert(19%) sepia(6%) saturate(19%) hue-rotate(82deg) brightness(95%) contrast(91%);
 }
 
-.icon--settings {
-    background-image: url('../assets/menu.svg');
-}
-
-.icon--close {
-    background-image: url('../assets/close.svg');
-}
-
 /* Dark Mode */
 
 [data-theme^='dark'] body {

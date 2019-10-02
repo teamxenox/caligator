@@ -2,7 +2,9 @@
     <header class="modal__head">
         <h1 class="modal__title">More</h1>
         <div class="modal__controls">
-            <i id="modal__popup--close" class="icon icon--close" on:click="close()"></i>
+            <div class="icon" on:click="close()">
+                <CloseButton></CloseButton>
+            </div>
         </div>
     </header>
     <div class="modal__body">
@@ -75,6 +77,9 @@ export default {
         close() {
             AppStore.set({ showModal: false });
         }
+    },
+    components: {
+        CloseButton: './CloseButton',
     }
 }
 </script>

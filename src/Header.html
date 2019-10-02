@@ -1,6 +1,8 @@
 <header class="app__head">
     <div class="app__controls">
-        <i id="app--settings" class="icon icon--settings" on:click="showModal()"></i>
+        <div class="icon" on:click="showModal()">
+            <SettingsButton></SettingsButton>
+        </div>
     </div>
     <h1 class="app__title">Caligator</h1>
 </header>
@@ -41,6 +43,9 @@ export default {
         showModal() {
             AppStore.set({ showModal: true });
         }
+    },
+    components: {
+        SettingsButton: './SettingsButton',
     }
 }
 </script>
