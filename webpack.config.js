@@ -22,6 +22,14 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				test: /service\.js$/,
+				loader: 'string-replace-loader',
+				options: {
+					search: 'window.webpackRevision',
+					replace: Date.now().toString(),
+				}
+			},
+			{
 				test: /\.html$/,
 				exclude: /node_modules/,
 				use: {

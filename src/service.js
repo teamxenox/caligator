@@ -1,12 +1,14 @@
 import * as precaching from 'workbox-precaching';
 
+const revision = window.webpackRevision;
+
 self.__precacheManifest = (self.__precacheManifest || []).concat([
-    "./bundle.css",
-    "./bundle.js",
-    "./index.html",
-    "./assets/close.svg",
-    "./assets/menu.svg",
-    "./assets/OpenSans.woff",
+    { url: "./bundle.css", revision },
+    { url: "./bundle.js", revision },
+    { url: "./index.html", revision },
+    { url: "./assets/close.svg", revision },
+    { url: "./assets/menu.svg", revision },
+    { url: "./assets/OpenSans.woff", revision },
 ]);
 
 precaching.precacheAndRoute(self.__precacheManifest || [])
