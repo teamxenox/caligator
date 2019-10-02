@@ -1,5 +1,5 @@
 const { Store } = require('svelte/store');
-const main = require('../utils/main');
+const caligatorCore = require('../utils/main');
 
 class _AppStore extends Store {
     constructor() {
@@ -10,7 +10,7 @@ class _AppStore extends Store {
 
         this.compute('inputs', ['rawInput'], rawInput => rawInput.split('\n'));
         this.compute('outputs', ['inputs'], outputs => 
-            outputs.map(line => main(line))
+            outputs.map(line => caligatorCore(line))
         );
     }
 }

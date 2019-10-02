@@ -6,7 +6,10 @@ const prod = mode === 'production';
 
 module.exports = {
 	entry: {
-		bundle: ['./src/main.js']
+		bundle: prod 
+			? ['./src/main.js']
+			: ['./src/enableDev.js', './src/main.js'],
+		['bundle.service']: './src/service.js',
 	},
 	resolve: {
 		extensions: ['.js', '.html']
