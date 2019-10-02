@@ -1,0 +1,19 @@
+image: 'node:latest'
+cache:
+  paths:
+   - node_modules/
+
+stages:
+ - staging
+
+pages:
+  stage: staging
+  script: 
+   - npm install
+   - npm run build
+  artifacts:
+    paths:
+     - public
+    expire_in: 1 week
+  only:
+  - master
