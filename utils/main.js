@@ -1,11 +1,7 @@
 'use strict';
 
-const coreCalc = require('./coreCalc');
 const coreConv = require('./coreConv');
 const mathJs = require('mathjs');
-
-var prefix = '';
-
 
 /** @const {Object} */
 const textForOperators = {
@@ -23,8 +19,33 @@ const textForOperators = {
     'cross': '*'
 };
 
+/** @const {string} */
+const currencyUnits = Object.keys(coreConv.currencyUnits).join('|');
+
 /** @const {object} */
 const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
+
+
+/**
+ * This function generates a RegExp for the given units
+ * @example generate(km|cm|in)
+ * @param {string} units
+ * @private
+ */
+const generateRegExpForUnits = units => new RegExp(`^(\\d+\\.?\\d*?\\s*)(${units})\\s*(to|TO)\\s*(${units})\\s*$`, 'm');
+
+/** @const {object} */
+const currencyRegExp = generateRegExpForUnits(currencyUnits);
+
+/**
+ * This function filters the given value with
+ * filter conditions :  null, undefined, empty or to
+ * returns false if it meets any of the above conditions
+ * @param {*} v - value which is filtered for null, undefined, empty or to.
+ * @returns {boolean} - result after filtering
+ * @private
+ */
+const filterValues = v => (v !== null && v !== undefined && v !== '' && v !== 'to' && v !== 'TO');
 
 /**
  * This function parses the given expression with the provided regExp and passes the values to the core modules
@@ -33,13 +54,11 @@ const commentRegExp = new RegExp(/^(\s*)#+(.*)/, 'm')
  * @param {string} unit
  * @returns {number}
  */
-const parseInput = (inp, type, unit) => {
+const parseExp = (inp, type, unit) => {
     inp = inp.split(type).filter(filterValues);
-    prefix = inp[2];
     let result = coreConv.convert(unit, ...inp);
     return result
 }
-
 
 /**
  * This is main function which parses and sends the values to the core modules
@@ -48,8 +67,7 @@ const parseInput = (inp, type, unit) => {
  */
 
 // TODO: refactor
-const main = exp => {
-    exp = exp.toLowerCase();
+const evaluate = exp => {
     exp = exp.trim();
 
     // Ignores if starts with #
@@ -57,17 +75,26 @@ const main = exp => {
 
     // Replaces the text alternatives for operators
     Object.keys(textForOperators).forEach(operator => {
-        let operatorRegExp =  new RegExp(`\\d+\s*${operator}\\s*`,'m')
+        let operatorRegExp = new RegExp(`\\d+\s*${operator}\\s*`, 'm')
         exp = exp.replace(operatorRegExp, textForOperators[operator])
     })
 
+    if (currencyRegExp.test(exp.toUpperCase())) {
+        return parseExp(exp.toUpperCase(), currencyRegExp, 'c');
+    } else {
+        return mathJs.evaluate(exp)
+    }
+}
+
+const main = exp => {
     try {
-        return mathJs.eval(exp) || ""
+        return evaluate(exp) ?
+            (typeof (evaluate(exp)) !== "function" ? // to filter function printing
+                evaluate(exp) : ""
+            ) : ""
     } catch (err) {
         return ""
     }
-
 }
-
 
 module.exports = main;
