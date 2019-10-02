@@ -137,9 +137,10 @@ label::after {
 }
 
 .app__output p {
-    margin: 0px 0px 14px 0;
+    margin: 0;
     font-weight: 900;
     cursor: pointer;
+    height: 1.1875rem;
 }
 
 .app__body {
@@ -155,6 +156,7 @@ label::after {
     font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 1px;
+    line-height: 1.1875rem;
 }
 
 .app__input {
@@ -164,6 +166,7 @@ label::after {
     background: transparent;
     resize: none;
     width: 100%;
+    overflow: hidden;
 }
 
 .app__output {
