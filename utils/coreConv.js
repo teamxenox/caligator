@@ -1,6 +1,5 @@
 'use strict';
 
-// const config = require('../store');
 const money = require('../lib/money');
 const defaultRates = require('./defaultRates');
 
@@ -54,7 +53,7 @@ const temperatureUnits = ['c', 'f', 'k'];
 /**
  * get cached currency rates
  */
-const currencyUnits = defaultRates; //config.has('rates') ? config.get('rates') : defaultRates;
+const currencyUnits = localStorage.caligator_rates ? JSON.parse(localStorage.caligator_rates) : defaultRates;
 
 /**
  * Setup money.fx for currencry conversion
