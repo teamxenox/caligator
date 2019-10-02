@@ -1,16 +1,22 @@
-{#if $showModal}
-<Modal></Modal>
-{:else}
-<Header></Header>
-<section class="app__container">
-    <div class="app__body">
-        <Input></Input>
-        <Output></Output>
-    </div>
-</section>
-{/if}
+<div class="app {$theme === 'dark' ? ' force-dark' : ''} {$theme === 'light' ? ' force-light' : ''}" >
+    {#if $showModal}
+    <Modal></Modal>
+    {:else}
+    <Header></Header>
+    <section class="app__container">
+        <div class="app__body">
+            <Input></Input>
+            <Output></Output>
+        </div>
+    </section>
+    {/if}
+</div>
 
 <style>
+.app {
+    height: 100%;
+    width: 100%;
+}
 .app__container {
     display: flex;
     height: 100vh;

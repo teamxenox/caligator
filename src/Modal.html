@@ -10,7 +10,7 @@
     <div class="modal__body">
         <label for="theme-switcher">Theme</label>
 
-        <select id="theme-switcher">
+        <select id="theme-switcher" bind:value="$theme">
             <option value="auto" selected>Auto</option>
             <option value="dark">Dark Mode</option>
             <option value="light">Light Mode</option>
@@ -76,7 +76,7 @@ export default {
     methods: {
         close() {
             AppStore.set({ showModal: false });
-        }
+        },
     },
     components: {
         CloseButton: './CloseButton',

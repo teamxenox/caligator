@@ -56,31 +56,30 @@ body {
 }
 
 /* Dark Mode */
-
-[data-theme^='dark'] body {
-    background: var(--dark-color);
-    color: var(--light-color);
+.force-dark.app {
+    background: var(--dark-color) !important;
+    color: var(--light-color) !important;
 }
 
-[data-theme^='dark'] .modal {
-    background: var(--dark-color);
+.force-dark .modal {
+    background: var(--dark-color) !important;
 }
 
-[data-theme^='dark'] .modal__title,
-[data-theme^='dark'] .app__title {
-    color: var(--light-color);
+.force-dark .modal__title,
+.force-dark .app__title {
+    color: var(--light-color) !important;
 }
 
-[data-theme^='dark'] .modal__head,
-[data-theme^='dark'] .app__head {
-    background: var(--dark-color);
+.force-dark .modal__head,
+.force-dark .app__head {
+    background: var(--dark-color) !important;
 }
 
-[data-theme^='dark'] .app__input {
-    color: var(--light-text-color);
+.force-dark .app__input {
+    color: var(--light-text-color) !important;
 }
 
-[data-theme^='dark'] .icon {
+.force-dark .icon {
     filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
 }
 
