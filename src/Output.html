@@ -1,4 +1,8 @@
-<div class="app__output"></div>
+<div class="app__output">
+    {#each $outputs as output}
+    <p>{output}</p>
+    {/each}
+</div>
 
 <style>
 .app__output {
@@ -19,3 +23,11 @@
     cursor: pointer;
 }
 </style>
+
+<script>
+import { AppStore } from './App.store';
+
+export default {
+    store: () => AppStore,
+}
+</script>

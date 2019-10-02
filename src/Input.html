@@ -1,4 +1,4 @@
-<textarea class="app__input" autofocus="true"></textarea>
+<textarea class="app__input" autofocus="true" bind:value="$rawInput"></textarea>
 
 <style>
 .app__input {
@@ -16,3 +16,11 @@
     width: 100%;
 }
 </style>
+
+<script>
+import { AppStore } from './App.store';
+
+export default {
+    store: () => AppStore,
+}
+</script>

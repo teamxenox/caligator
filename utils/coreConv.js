@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('../store');
+// const config = require('../store');
 const money = require('../lib/money');
 const defaultRates = require('./defaultRates');
 
@@ -54,7 +54,7 @@ const temperatureUnits = ['c', 'f', 'k'];
 /**
  * get cached currency rates
  */
-const currencyUnits = config.has('rates') ? config.get('rates') : defaultRates;
+const currencyUnits = defaultRates; //config.has('rates') ? config.get('rates') : defaultRates;
 
 /**
  * Setup money.fx for currencry conversion
