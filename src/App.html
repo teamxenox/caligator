@@ -1,1 +1,32 @@
-<p>App Works</p>
+<Header></Header>
+<section class="app__container">
+    <div class="app__body">
+        <Input></Input>
+        <Output></Output>
+    </div>
+</section>
+<Modal></Modal>
+
+<style>
+.app__container {
+    display: flex;
+    height: 100vh;
+    padding: 4rem 1.5rem;
+}
+.app__body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100vw;
+}
+</style>
+
+<script>
+export default {
+    components: {
+        Header: './Header',
+        Input: './Input',
+        Output: './Output',
+        Modal: './Modal',
+    }
+}
+</script>

@@ -43,75 +43,6 @@ body {
     letter-spacing: 1px;
 }
 
-.modal {
-    width: 100%;
-    height: 100%;
-    z-index: 10000;
-    position: absolute;
-    background: var(--light-color);
-    overflow: hidden;
-    display: none;
-}
-
-.modal__body {
-    padding: 4rem 2rem 1rem;
-}
-
-.modal__head,
-.app__head {
-    padding: 1rem;
-    -webkit-app-region: drag;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: fixed;
-    background: var(--light-color);
-    width: 100vw;
-    user-select: none;
-    -webkit-app-region: drag;
-}
-
-.modal__title,
-.app__title {
-    font-size: 0.75rem;
-    margin: 0;
-    text-align: center;
-    color: var(--dark-color);
-    text-transform: uppercase;
-}
-
-.modal__controls,
-.app__controls {
-    -webkit-app-region: no-drag;
-}
-
-.modal__controls,
-.app__controls>i:nth-child(odd) {
-    margin-right: 4px;
-}
-
-.modal__controls,
-.app__controls>i {
-    transition: 1s opacity;
-}
-
-.modal__controls,
-.app__controls>i:hover {
-    opacity: 1;
-}
-
-.theme-switcher {
-    display: flex;
-}
-
-label {
-    font-size: 0.75rem;
-}
-
-label::after {
-    content: ':';
-}
-
 .icon {
     cursor: pointer;
     opacity: 0.5;
@@ -124,59 +55,8 @@ label::after {
     filter: invert(19%) sepia(6%) saturate(19%) hue-rotate(82deg) brightness(95%) contrast(91%);
 }
 
-.icon--minimize {
-    background-image: url('../static/minimize.svg');
-}
-
-.icon--close {
-    background-image: url('../static/close.svg');
-}
-
 .icon--settings {
-    background-image: url('../static//menu.svg');
-}
-
-.app__container {
-    display: flex;
-    height: 100vh;
-    padding: 4rem 1.5rem;
-}
-
-.app__output p {
-    margin: 0px 0px 14px 0;
-    font-weight: 900;
-    cursor: pointer;
-}
-
-.app__body {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    flex-direction: row;
-    width: 100vw;
-}
-
-.app__input,
-.app__output {
-    width: 50%;
-    font-size: 0.8rem;
-    font-weight: 900;
-    letter-spacing: 1px;
-}
-
-.app__input {
-    border: none;
-    outline: none;
-    color: var(--dark-text-color);
-    background: transparent;
-    resize: none;
-    width: 100%;
-}
-
-.app__output {
-    color: var(--result-text-color);
-    text-align: right;
-    width: 100%;
-    border-left: 1px solid #e3e3e3;
+    background-image: url('../assets/menu.svg');
 }
 
 /* Dark Mode */
