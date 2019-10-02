@@ -2,7 +2,7 @@
     <header class="modal__head">
         <h1 class="modal__title">More</h1>
         <div class="modal__controls">
-            <i id="modal__popup--close" class="icon icon--close"></i>
+            <i id="modal__popup--close" class="icon icon--close" on:click="close()"></i>
         </div>
     </header>
     <div class="modal__body">
@@ -24,7 +24,6 @@
     position: absolute;
     background: var(--light-color);
     overflow: hidden;
-    display: none;
 }
 
 .modal__body {
@@ -59,10 +58,6 @@
     opacity: 1;
 }
 
-.theme-switcher {
-    display: flex;
-}
-
 label {
     font-size: 0.75rem;
 }
@@ -71,3 +66,15 @@ label::after {
     content: ':';
 }
 </style>
+
+<script>
+import { AppStore } from './App.store';
+
+export default {
+    methods: {
+        close() {
+            AppStore.set({ showModal: false });
+        }
+    }
+}
+</script>

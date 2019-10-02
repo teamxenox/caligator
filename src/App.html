@@ -1,3 +1,6 @@
+{#if $showModal}
+<Modal></Modal>
+{:else}
 <Header></Header>
 <section class="app__container">
     <div class="app__body">
@@ -5,7 +8,7 @@
         <Output></Output>
     </div>
 </section>
-<Modal></Modal>
+{/if}
 
 <style>
 .app__container {
@@ -21,7 +24,10 @@
 </style>
 
 <script>
+import { AppStore } from './App.store';
+
 export default {
+    store: () => AppStore,
     components: {
         Header: './Header',
         Input: './Input',

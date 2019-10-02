@@ -59,6 +59,10 @@ body {
     background-image: url('../assets/menu.svg');
 }
 
+.icon--close {
+    background-image: url('../assets/close.svg');
+}
+
 /* Dark Mode */
 
 [data-theme^='dark'] body {
