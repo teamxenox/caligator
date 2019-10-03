@@ -18,7 +18,7 @@ if (!window.dev) {
 
 cacheRates();
 
-window.addEventListener('beforeinstallprompt ', e => {
+window.addEventListener('beforeinstallprompt', e => {
 	AppStore.set({ installPrompt: e });
 });
 
