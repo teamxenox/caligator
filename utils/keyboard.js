@@ -29,7 +29,7 @@ const overrideShift = (key) => {
 
   // do this if 
   if (selection.length > 0) {
-    if (key === keys.OPEN_PARENTHESIS) {
+    if (key === keys.OPEN_PARENTHESIS && document.getElementById('toggle-paren-wrap').checked) {
 
       // don't replace the text
       event.preventDefault();

@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Caligator</title>
-		<script>
-			window.loadTheme = () => {
-				let userTheme = localStorage.userTheme;
-				let OSTheme = localStorage.osTheme;
-				let defaultTheme = 'auto';
-				if (userTheme === 'auto' || !userTheme) {
-					document.documentElement.setAttribute(
-						'data-theme',
-						OSTheme
-					);
-				} else {
-					document.documentElement.setAttribute(
-						'data-theme',
-						userTheme
-					);
-				}
-			};
-			loadTheme();
-		</script>
-		<link rel="stylesheet" href="index.css" />
-	</head>
 
-	<body>
-		<div class="modal">
-			<header class="modal__head">
-				<h1 class="modal__title">More</h1>
-				<div class="modal__controls">
-					<i id="modal__popup--close" class="icon icon--close"></i>
-				</div>
-			</header>
-			<div class="modal__body">
-				<label for="theme-switcher">Theme</label>
+<head>
+    <meta charset="utf-8" />
+    <title>Caligator</title>
+    <script>
+        window.loadTheme = () => {
+            let userTheme = localStorage.userTheme;
+            let OSTheme = localStorage.osTheme;
+            let defaultTheme = 'auto';
+            if (userTheme === 'auto' || !userTheme) {
+                document.documentElement.setAttribute(
+                    'data-theme',
+                    OSTheme
+                );
+            } else {
+                document.documentElement.setAttribute(
+                    'data-theme',
+                    userTheme
+                );
+            }
+        };
+        loadTheme();
 
-				<select id="theme-switcher">
-					<option value="auto" selected>Auto</option>
-					<option value="dark">Dark Mode</option>
-					<option value="light">Light Mode</option>
-				</select>
-			</div>
-		</div>
+    </script>
+    <link rel="stylesheet" href="index.css" />
+</head>
 
-		<header class="app__head">
-			<div class="app__controls">
-				<i id="app--settings" class="icon icon--settings"></i>
-			</div>
-			<h1 class="app__title">Caligator</h1>
-			<div class="app__controls">
-				<i id="app--minimize" class="icon icon--minimize"></i>
-				<i id="app--close" class="icon icon--close"></i>
-			</div>
-		</header>
+<body>
+    <div class="modal">
+        <header class="modal__head">
+            <h1 class="modal__title">More</h1>
+            <div class="modal__controls">
+                <i id="modal__popup--close" class="icon icon--close"></i>
+            </div>
+        </header>
+        <div class="modal__body">
+            <label for="theme-switcher">Theme</label>
 
-		<section class="app__container">
-			<div class="app__body">
-				<textarea class="app__input" autofocus="true"></textarea>
-				<div class="app__output"></div>
-			</div>
-		</section>
+            <select id="theme-switcher">
+                <option value="auto" selected>Auto</option>
+                <option value="dark">Dark Mode</option>
+                <option value="light">Light Mode</option>
+            </select>
 
-		<script src="script.js"></script>
-	</body>
+            <hr />
+            <label for="toggle-paren-wrap">Wrap selected text with parentheses</label>
+            <input type="checkbox" id="toggle-paren-wrap">
+        </div>
+    </div>
+
+    <header class="app__head">
+        <div class="app__controls">
+            <i id="app--settings" class="icon icon--settings"></i>
+        </div>
+        <h1 class="app__title">Caligator</h1>
+        <div class="app__controls">
+            <i id="app--minimize" class="icon icon--minimize"></i>
+            <i id="app--close" class="icon icon--close"></i>
+        </div>
+    </header>
+
+    <section class="app__container">
+        <div class="app__body">
+            <textarea class="app__input" autofocus="true"></textarea>
+            <div class="app__output"></div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
