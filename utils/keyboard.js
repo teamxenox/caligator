@@ -24,22 +24,22 @@ const keyboardState = {
 };
 
 const overrideShift = (key) => {
-  // get the selected text
+  // Get the selected text
   const selection = window.getSelection().toString();
 
-  // do this if 
+  // Do this if there is a) selected text and b) wrapping is enabled
   if (selection.length > 0) {
     if (key === keys.OPEN_PARENTHESIS && document.getElementById('toggle-paren-wrap').checked) {
 
-      // don't replace the text
+      // Don't replace the text...
       event.preventDefault();
 
-      // wrap in parenthesis. Use document.execCommand to make the opperation undoable
+      // ...wrap in parenthesis. Use document.execCommand to make the opperation undoable
       const { selectionStart, selectionEnd } = document.activeElement;
       const selection = document.getSelection().toString();
       document.execCommand(commands.INSERT_TEXT, false, `(${selection})`);
 
-      // reselect the text
+      // Reselect the text
       document.activeElement.selectionStart = selectionStart;
       document.activeElement.selectionEnd = selectionEnd + 2;
     }
