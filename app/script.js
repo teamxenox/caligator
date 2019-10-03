@@ -1,6 +1,7 @@
 'use strict';
 
 const { remote } = require('electron');
+const { keyboardState, keys, overrideShift } = require('../utils/keyboard');
 const main = require('../utils/main');
 
 // By default OS theme
@@ -54,6 +55,30 @@ inputContainer.addEventListener('keyup', e => {
 });
 
 /**
+ * @event
+ * Updates the 'shift' key state.
+ */
+inputContainer.addEventListener('keyup', e => {
+	if (e.key === keys.SHIFT) {
+		keyboardState.shift = false;
+	}
+});
+
+/**
+ * @event
+ * This adds some functionality when the shift key is pressed.
+ */
+inputContainer.addEventListener('keydown', e => {
+	const { key } = e;
+	// toggle the shift key
+	if (key === keys.SHIFT) {
+		keyboardState.shift = true;
+	} else if (keyboardState.shift) {
+		overrideShift(key);
+	}
+});
+
+/**
  * This function passes the data and updates the result on the markup
  * @param {Array} arr - gets the expression by line as an array
  * @private
@@ -79,7 +104,7 @@ const appPopup = document.querySelectorAll('.modal')[0];
  * This function adds the window controls to the application
  * @private
  */
-(function() {
+(function () {
 	const { BrowserWindow } = require('electron').remote;
 
 	function init() {
