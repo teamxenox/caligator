@@ -1,0 +1,26 @@
+<textarea class="app__input" autofocus="true" bind:value="$rawInput"></textarea>
+
+<style>
+.app__input {
+    width: 50%;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border: none;
+    outline: none;
+    color: var(--caligator-input-text-color);
+    background: transparent;
+    resize: none;
+    width: 100%;
+    line-height: 1.1875rem;
+    overflow: hidden;
+}
+</style>
+
+<script>
+import { AppStore } from './App.store';
+
+export default {
+    store: () => AppStore,
+}
+</script>

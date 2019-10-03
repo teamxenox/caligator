@@ -1,0 +1,45 @@
+<div class="app {$theme === 'dark' ? ' force-dark' : ''} {$theme === 'light' ? ' force-light' : ''}" >
+    {#if $showModal}
+    <Modal></Modal>
+    {:else}
+    <Header></Header>
+    <section class="app__container">
+        <div class="app__body">
+            <Input></Input>
+            <Output></Output>
+        </div>
+    </section>
+    {/if}
+</div>
+
+<style>
+.app {
+    height: 100%;
+    width: 100%;
+    background: var(--caligator-background);
+}
+.app__container {
+    display: flex;
+    height: 100vh;
+    padding: 4rem 1.5rem;
+}
+.app__body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100vw;
+}
+</style>
+
+<script>
+import { AppStore } from './App.store';
+
+export default {
+    store: () => AppStore,
+    components: {
+        Header: './Header',
+        Input: './Input',
+        Output: './Output',
+        Modal: './Modal',
+    }
+}
+</script>

@@ -1,13 +1,13 @@
-module.exports = async function(config) {
+module.exports = async function () {
 	// cache currency conversion rates
-	if (config.has('rates')) {
-        const hours = 1;
+	if (localStorage.caligator_rates) {
+		const hours = 1;
 		const intervalInMilliseconds = new Date().getTime() + 1 * hours * 60 * 60 * 1000;
 
 		/**
 		 * if rates are more than 24h old make sure to cache new Rates
 		 */
-		if (intervalInMilliseconds < config.get('last_cached')) {
+		if (intervalInMilliseconds < parseInt(localStorage.caligator_rates_last_cached, 10)) {
 			await cacheRates();
 		}
 	} else {
@@ -23,19 +23,21 @@ module.exports = async function(config) {
 	 * to electron store
 	 */
 	async function cacheRates() {
-		const axios = require('axios');
+		try {
 
-		const response = await axios(
-			`https://api.exchangeratesapi.io/latest?base=USD`
-		);
+			const response = await fetch(
+				`https://api.exchangeratesapi.io/latest?base=USD`
+			);
 
-		if (response.status === 200) {
-			config.set({
-				rates: response.data.rates,
-				last_cached: new Date()
-			});
+			if (response.status !== 200) {
+				return;
+			}
+
+			const data = await response.json();
+			localStorage.setItem('caligator_rates', JSON.stringify(data.rates));
+			localStorage.setItem('caligator_rates_last_cached', Date.now());
+		} catch (e) {
+			console.log('Failed to update rates, using cache or defaults', e);
 		}
-
-		return;
 	}
 };

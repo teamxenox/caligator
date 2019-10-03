@@ -1,0 +1,87 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('./assets/OpenSans.woff');
+    font-weight: normal;
+    font-style: normal; 
+}
+
+:root {
+    --light-color: #fff;
+    --dark-color: #202646;
+    --light-text-color: #ffd631;
+    --dark-text-color: #ff8414;
+    --result-text-color: #00ff76;
+    --font-size: 16px;
+    --icon-light-filter: invert(19%) sepia(6%) saturate(19%) hue-rotate(82deg) brightness(95%) contrast(91%);
+    --icon-dark-filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
+
+    /* Default to Light */
+    --caligator-background: var(--light-color);
+    --caligator-text-color: var(--dark-color);
+    --caligator-input-text-color: var(--light-text-color);
+    --caligator-icon-filter: var(--icon-light-filter);
+}
+
+.force-dark {
+    /* Override to Dark */
+    --caligator-background: var(--dark-color);
+    --caligator-text-color: var(--light-color);
+    --caligator-input-text-color: var(--dark-text-color);
+    --caligator-icon-filter: var(--icon-dark-filter);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Default to Dark */
+        --caligator-background: var(--dark-color);
+        --caligator-text-color: var(--light-color);
+        --caligator-input-text-color: var(--dark-text-color);
+        --caligator-icon-filter: var(--icon-dark-filter);
+    }
+
+    .force-light {
+        /* Override to Light */
+        --caligator-background: var(--light-color);
+        --caligator-text-color: var(--dark-color);
+        --caligator-input-text-color: var(--light-text-color);
+        --caligator-icon-filter: var(--icon-light-filter);
+    }
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size);
+}
+
+body {
+    font-family: 'open_sansregular';
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga', 'clig', 'kern';
+    background: var(--caligator-background);
+    color: var(--caligator-text-color);
+    letter-spacing: 1px;
+}
+
+.icon {
+    cursor: pointer;
+    opacity: 0.5;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 12px;
+    background-position: bottom;
+    width: 12px;
+    height: 12px;
+    filter: var(--caligator-icon-filter);
+}

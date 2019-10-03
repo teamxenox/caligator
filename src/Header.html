@@ -1,0 +1,79 @@
+<header class="app__head">
+    <div class="app__controls">
+        <div class="icon" on:click="showModal()">
+            <SettingsButton></SettingsButton>
+        </div>
+        <div class="flex"></div>
+    </div>
+    {#if $installPrompt}
+        <div class="install-prompt" on:click="onInstall()">Install Caligator</div>
+    {/if}
+    <h1 class="app__title">Caligator</h1>
+</header>
+
+<style>
+.install-prompt {
+    font-size: .75rem;
+    line-height: 1.5;
+    padding: .25rem .5rem;
+    border: 1px solid var(--caligator-input-text-color);
+    color: var(--caligator-text-color);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.app__head {
+    position: fixed;
+    padding: 1rem;
+    -webkit-app-region: drag;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: var(--caligator-background);
+    width: 100vw;
+    user-select: none;
+    -webkit-app-region: drag;
+    border-top: 1px solid #4c4c4c33;
+}
+.app__title {
+    position: absolute;
+    width: 100vw;
+    left: 0;
+    top: 1.25rem;
+    font-size: 0.75rem;
+    margin: 0;
+    text-align: center;
+    color: var(--caligator-text-color);
+    text-transform: uppercase;
+    pointer-events: none;
+}
+.flex {
+    flex: 1 1 0;
+}
+</style>
+
+<script>
+import { AppStore } from './App.store';
+
+export default {
+    store: () => AppStore,
+    methods: {
+        showModal() {
+            AppStore.set({ showModal: true });
+        },
+        onInstall() {
+            const { installPrompt } = AppStore.get();
+
+            installPrompt.prompt();
+
+            installPrompt.userChoice.then(result => {
+                console.log('Installed?', result);
+                AppStore.set({ installPrompt: null });
+            });
+        }
+    },
+    components: {
+        SettingsButton: './SettingsButton',
+    }
+}
+</script>

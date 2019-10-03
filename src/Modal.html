@@ -1,0 +1,85 @@
+<div class="modal">
+    <header class="modal__head">
+        <h1 class="modal__title">More</h1>
+        <div class="modal__controls">
+            <div class="icon" on:click="close()">
+                <CloseButton></CloseButton>
+            </div>
+        </div>
+    </header>
+    <div class="modal__body">
+        <label for="theme-switcher">Theme</label>
+
+        <select id="theme-switcher" bind:value="$theme">
+            <option value="auto" selected>Auto</option>
+            <option value="dark">Dark Mode</option>
+            <option value="light">Light Mode</option>
+        </select>
+    </div>
+</div>
+
+<style>
+.modal {
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    position: absolute;
+    background: var(--caligator-background);
+    color: var(--caligator-text-color);
+    overflow: hidden;
+}
+
+.modal__body {
+    padding: 4rem 2rem 1rem;
+}
+
+.modal__head {
+    padding: 1rem;
+    -webkit-app-region: drag;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    background: var(--caligator-background);
+    width: 100vw;
+    user-select: none;
+    -webkit-app-region: drag;
+}
+
+.modal__title {
+    font-size: 0.75rem;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.modal__controls {
+    -webkit-app-region: no-drag;
+    margin-right: 4px;
+    transition: 1s opacity;
+    opacity: 1;
+}
+
+label {
+    font-size: 0.75rem;
+}
+
+label::after {
+    content: ':';
+}
+</style>
+
+<script>
+import { AppStore } from './App.store';
+
+export default {
+    methods: {
+        close() {
+            AppStore.set({ showModal: false });
+        },
+    },
+    components: {
+        CloseButton: './CloseButton',
+    }
+}
+</script>
