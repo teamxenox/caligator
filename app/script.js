@@ -65,7 +65,12 @@ function evaluate(arr) {
 	outputContainer.innerText = '';
 	output.forEach(value => {
 		const result = document.createElement('p');
+		result.className = "__output";
 		result.innerText += value;
+		result.addEventListener("click",function(){
+			copyClicked(this);
+		});
+		
 		outputContainer.append(result);
 	});
 }
@@ -147,3 +152,12 @@ const appPopup = document.querySelectorAll('.modal')[0];
 		}
 	};
 })();
+
+function copyClicked(p_output_element){
+	const el = document.createElement('textarea');
+	el.value = p_output_element.innerText;
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand('copy');
+	document.body.removeChild(el);
+}
