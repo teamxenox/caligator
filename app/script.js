@@ -153,6 +153,7 @@ const appPopup = document.querySelectorAll('.modal')[0];
 	};
 })();
 
+// Function to Copy to clipboard, on clicking an output element. 
 function copyClicked(p_output_element){
 	const el = document.createElement('textarea');
 	el.value = p_output_element.innerText;
