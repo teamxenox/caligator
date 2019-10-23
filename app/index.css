@@ -133,8 +133,7 @@ label::after {
 .app__container {
     display: flex;
     height: 100vh;
-    padding: 4rem 1.5rem 1rem 1.5rem;
-    flex-direction: column;
+    padding: 4rem 1.5rem;
 }
 
 .app__output p {
@@ -144,12 +143,10 @@ label::after {
 }
 
 .app__body {
-    /* display: grid;
+    display: grid;
     grid-template-columns: 2fr 1fr;
     flex-direction: row;
-    width: 100vw; */
-    display: flex;
-    height: 100%;
+    width: 100vw;
 }
 
 .app__input,
@@ -166,23 +163,14 @@ label::after {
     color: var(--dark-text-color);
     background: transparent;
     resize: none;
-    width: 80%;
+    width: 100%;
 }
 
 .app__output {
     color: var(--result-text-color);
     text-align: right;
-    width: 20%;
+    width: 100%;
     border-left: 1px solid #e3e3e3;
-}
-
-.app__total_container {
-    display: flex;
-    justify-content: center;
-}
-
-#app__total__output {
-    margin: 0px 10px;
 }
 
 /* Dark Mode */
