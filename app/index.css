@@ -133,20 +133,24 @@ label::after {
 .app__container {
     display: flex;
     height: 100vh;
-    padding: 4rem 1.5rem;
+    padding: 4rem 1.5rem 1rem 1.5rem;
+    flex-direction: column;
 }
 
 .app__output p {
-    margin: 0px 0px 14px 0;
+    margin: 0;
     font-weight: 900;
     cursor: pointer;
+    height: 1.1875rem;
 }
 
 .app__body {
-    display: grid;
+    /* display: grid;
     grid-template-columns: 2fr 1fr;
     flex-direction: row;
-    width: 100vw;
+    width: 100vw; */
+    display: flex;
+    height: 100%;
 }
 
 .app__input,
@@ -155,6 +159,7 @@ label::after {
     font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 1px;
+    line-height: 1.1875rem;
 }
 
 .app__input {
@@ -164,13 +169,23 @@ label::after {
     background: transparent;
     resize: none;
     width: 100%;
+    overflow: hidden;
 }
 
 .app__output {
     color: var(--result-text-color);
     text-align: right;
-    width: 100%;
+    width: 20%;
     border-left: 1px solid #e3e3e3;
+}
+
+.app__total_container {
+    display: flex;
+    justify-content: center;
+}
+
+#app__total__output {
+    margin: 0px 10px;
 }
 
 /* Dark Mode */

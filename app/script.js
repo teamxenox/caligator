@@ -42,6 +42,9 @@ const inputContainer = document.querySelectorAll('.app__input')[0];
 /** @type {Object} */
 const outputContainer = document.querySelectorAll('.app__output')[0];
 
+/** @type  {Object} */
+const totalContainer = document.querySelector('#app__total__output');
+
 /** @type {Array} */
 let equationsCollected = [];
 
@@ -88,10 +91,13 @@ inputContainer.addEventListener('keydown', e => {
 function evaluate(arr) {
 	const output = arr.map(each => main(each));
 	outputContainer.innerText = '';
+	let displayTotal = 0;
 	output.forEach(value => {
 		const result = document.createElement('p');
 		result.innerText += value;
 		outputContainer.append(result);
+		displayTotal += value
+		totalContainer.innerText = displayTotal
 	});
 }
 

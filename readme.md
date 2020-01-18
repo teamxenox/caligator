@@ -1,7 +1,7 @@
 <div align="center"><img src="https://user-images.githubusercontent.com/10527102/65829910-fc410680-e2c7-11e9-8caf-975fdb74b161.png"></div>
 
 # Caligator
-
+[![Gitter](https://badges.gitter.im/Caligatorapp/community.svg)](https://gitter.im/Caligatorapp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 > An open source kickass cross platform Calculator with power of alligator
 
 **[Website](https://sarthology.github.io/caligator)**
