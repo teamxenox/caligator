@@ -1,7 +1,6 @@
 'use strict';
 
 const { remote } = require('electron');
-const { keyboardState, keys, overrideShift } = require('../utils/keyboard');
 const main = require('../utils/main');
 
 // By default OS theme
@@ -55,30 +54,6 @@ let equationsCollected = [];
 inputContainer.addEventListener('keyup', e => {
 	equationsCollected = e.target.value.split('\n');
 	evaluate(equationsCollected);
-});
-
-/**
- * @event
- * Updates the 'shift' key state.
- */
-inputContainer.addEventListener('keyup', e => {
-	if (e.key === keys.SHIFT) {
-		keyboardState.shift = false;
-	}
-});
-
-/**
- * @event
- * This adds some functionality when the shift key is pressed.
- */
-inputContainer.addEventListener('keydown', e => {
-	const { key } = e;
-	// toggle the shift key
-	if (key === keys.SHIFT) {
-		keyboardState.shift = true;
-	} else if (keyboardState.shift) {
-		overrideShift(key);
-	}
 });
 
 /**
