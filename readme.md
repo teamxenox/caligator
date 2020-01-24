@@ -1,10 +1,14 @@
-<div align="center"><img src="https://user-images.githubusercontent.com/10527102/65829910-fc410680-e2c7-11e9-8caf-975fdb74b161.png"></div>
-
 # Caligator
-[![Gitter](https://badges.gitter.im/Caligatorapp/community.svg)](https://gitter.im/Caligatorapp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-> An open source kickass cross platform Calculator with power of alligator
+--
+[![Gitter](https://badges.gitter.im/Caligatorapp/community.svg)](https://gitter.im/Caligatorapp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) ![](https://travis-ci.org/sarthology/caligator.svg?branch=master)
+ 
 
-**[Website](https://sarthology.github.io/caligator)**
+An open source kickass cross platform Calculator with power of alligator 🐊
+
+
+![Caligator](https://user-images.githubusercontent.com/3650216/73049879-f2a96300-3ea3-11ea-863e-1c871617059a.png)
+
+
 
 ## Highlights
 
@@ -38,14 +42,15 @@
 ## TODO
 - [ ] Export Options
 - [ ] Font size preferences
-- [ ] Click to copy
 - [ ] More themes 🎉
----
-
 
 ## Contributing
 
-Built with [Electron](https://electronjs.org).
+1. 🍴 Fork this repo!
+2. **HACK AWAY!** 🔨🔨🔨
+3. 🔃 Create a new pull request.
+
+
 
 ### Run
 
