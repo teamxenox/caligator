@@ -1,5 +1,4 @@
 # Caligator
---
 [![Gitter](https://badges.gitter.im/Caligatorapp/community.svg)](https://gitter.im/Caligatorapp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) ![](https://travis-ci.org/sarthology/caligator.svg?branch=master)
  
 
