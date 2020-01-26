@@ -74,7 +74,7 @@ function evaluate(arr) {
 		result.addEventListener("click",function(){
 			copyClicked(this);
 		});
-		
+
 		outputContainer.append(result);
 		displayTotal += value
 		totalContainer.innerText = displayTotal
@@ -159,7 +159,7 @@ const appPopup = document.querySelectorAll('.modal')[0];
 	};
 })();
 
-// Function to Copy to clipboard, on clicking an output element. 
+// Function to Copy to clipboard, on clicking an output element.
 function copyClicked(p_output_element){
 	const el = document.createElement('textarea');
 	el.value = p_output_element.innerText;
@@ -168,3 +168,49 @@ function copyClicked(p_output_element){
 	document.execCommand('copy');
 	document.body.removeChild(el);
 }
+
+const getResizeableElement = () => { return document.querySelector(".app__input"); };
+const getSecondResizeableElement = () => { return document.querySelector(".app__output"); };
+const getHandleElement = () => { return document.getElementById("handle"); };
+const minPaneSize = 100;
+const maxPaneSize = document.body.clientWidth * 0.75
+const minSecondPanelSize = 25
+getResizeableElement().style.setProperty('--max-width', `${maxPaneSize}px`);
+getResizeableElement().style.setProperty('--min-width', `${minPaneSize}px`);
+
+const setPaneWidth = (width) => {
+  getResizeableElement().style.setProperty('--resizeable-width', `${width}px`);
+	var secondWidth = minSecondPanelSize + ((maxPaneSize - parseFloat(getComputedStyle(getResizeableElement()).getPropertyValue('--resizeable-width')))/maxPaneSize)*100
+	if(secondWidth >= minSecondPanelSize){
+		getSecondResizeableElement().style.setProperty('--resizeable-width', `${secondWidth}%`)
+	}
+};
+
+const getPaneWidth = () => {
+  const pxWidth = getComputedStyle(getResizeableElement())
+    .getPropertyValue('--resizeable-width');
+  return parseInt(pxWidth, 10);
+};
+
+const startDragging = (event) => {
+  event.preventDefault();
+  const host = getResizeableElement();
+  const startingPaneWidth = getPaneWidth();
+  const xOffset = event.pageX;
+
+  const mouseDragHandler = (moveEvent) => {
+    moveEvent.preventDefault();
+    const primaryButtonPressed = moveEvent.buttons === 1;
+    if (!primaryButtonPressed) {
+      setPaneWidth(Math.min(Math.max(getPaneWidth(), minPaneSize), maxPaneSize));
+      document.body.removeEventListener('pointermove', mouseDragHandler);
+      return;
+    }
+
+    const paneOriginAdjustment = 'left' === 'right' ? 1 : -1;
+    setPaneWidth((xOffset - moveEvent.pageX ) * paneOriginAdjustment + startingPaneWidth);
+  };
+  const remove = document.body.addEventListener('pointermove', mouseDragHandler);
+};
+
+getHandleElement().addEventListener('mousedown', startDragging);
