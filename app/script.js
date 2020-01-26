@@ -173,7 +173,7 @@ const getResizeableElement = () => { return document.querySelector(".app__input"
 const getSecondResizeableElement = () => { return document.querySelector(".app__output"); };
 const getHandleElement = () => { return document.getElementById("handle"); };
 const minPaneSize = 100;
-const maxPaneSize = document.body.clientWidth * 0.75
+let maxPaneSize = document.body.clientWidth * 0.75
 const minSecondPanelSize = 25
 getResizeableElement().style.setProperty('--max-width', `${maxPaneSize}px`);
 getResizeableElement().style.setProperty('--min-width', `${minPaneSize}px`);
@@ -200,6 +200,9 @@ const startDragging = (event) => {
 
   const mouseDragHandler = (moveEvent) => {
     moveEvent.preventDefault();
+    maxPaneSize = document.body.clientWidth * 0.75
+	getResizeableElement().style.setProperty('--max-width', `${maxPaneSize}px`);
+      
     const primaryButtonPressed = moveEvent.buttons === 1;
     if (!primaryButtonPressed) {
       setPaneWidth(Math.min(Math.max(getPaneWidth(), minPaneSize), maxPaneSize));
