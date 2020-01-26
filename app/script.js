@@ -25,12 +25,19 @@ if (process.platform === 'darwin') {
 		}
 	};
 
+	const defaultPoint = () => {
+		if(window.localStorage.decimalPoint === undefined){
+			window.localStorage.decimalPoint = 4;
+		}
+	}
+
 	systemPreferences.subscribeNotification(
 		'AppleInterfaceThemeChangedNotification',
 		defaultTheme
 	);
 
 	defaultTheme();
+	defaultPoint();
 }
 
 // Main
@@ -70,7 +77,13 @@ function evaluate(arr) {
 	output.forEach(value => {
 		const result = document.createElement('p');
 		result.className = "__output";
-		result.innerText += value;
+		if(Number(parseFloat(value)) === parseFloat(value) && parseFloat(value) % 1 !== 0){
+				value = parseFloat(value)
+				result.innerText += +value.toFixed(window.localStorage.decimalPoint);
+		}
+		else{
+				result.innerText += value;
+		}
 		result.addEventListener("click",function(){
 			copyClicked(this);
 		});
@@ -136,6 +149,13 @@ const appPopup = document.querySelectorAll('.modal')[0];
 
 				window.localStorage.userTheme = userTheme;
 			});
+
+		document
+			.querySelector('#decimal-switcher')
+			.addEventListener('change', e => {
+				const decimalPoint = e.target.value;
+				window.localStorage.decimalPoint = decimalPoint;
+			});
 	}
 
 	document.onreadystatechange = () => {
@@ -145,6 +165,9 @@ const appPopup = document.querySelectorAll('.modal')[0];
 				window.localStorage.userTheme ||
 				window.localStorage.osTheme ||
 				'light';
+				
+			const decimalPoint = window.localStorage.decimalPoint || 4
+
 			if (userTheme === 'auto') {
 				document.documentElement.setAttribute(
 					'data-theme',
@@ -155,6 +178,7 @@ const appPopup = document.querySelectorAll('.modal')[0];
 			}
 
 			document.querySelector('#theme-switcher').value = userTheme;
+			document.querySelector('#decimal-switcher').value = decimalPoint;
 		}
 	};
 })();
@@ -202,7 +226,7 @@ const startDragging = (event) => {
     moveEvent.preventDefault();
     maxPaneSize = document.body.clientWidth * 0.75
 	getResizeableElement().style.setProperty('--max-width', `${maxPaneSize}px`);
-      
+
     const primaryButtonPressed = moveEvent.buttons === 1;
     if (!primaryButtonPressed) {
       setPaneWidth(Math.min(Math.max(getPaneWidth(), minPaneSize), maxPaneSize));
