@@ -84,12 +84,12 @@ body {
     margin-right: 4px;
 }
 
-.modal__controls,
+.modal__controls>i:hover,
 .app__controls>i {
     transition: 1s opacity;
 }
 
-.modal__controls,
+.modal__controls>i:hover,
 .app__controls>i:hover {
     opacity: 1;
 }
@@ -124,6 +124,11 @@ label::after {
 
 .icon--close {
     background-image: url('../static/close.svg');
+}
+
+.icon--back {
+    background-image: url('../static/back.svg');
+    transform: scale(1.5);
 }
 
 .icon--settings {
@@ -163,20 +168,45 @@ label::after {
 }
 
 .app__input {
+    --resizeable-width: 300px;
     border: none;
     outline: none;
     color: var(--dark-text-color);
     background: transparent;
     resize: none;
-    width: 100%;
+    width: var(--resizeable-width);
+    min-width: var(--min-width);
+    max-width: var(--max-width);
     overflow: hidden;
 }
 
+#handle {
+  float: right;
+  height: 100%;
+  width: 1px;
+  background-color: transparent;
+  z-index: 1;
+}
+
+#handle::after {
+  content: "";
+  width: 9px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-left: -4px;
+  background-color: transparent;
+  cursor: ew-resize;
+  z-index: 2;
+}
+
 .app__output {
+    --resizeable-width: 25%;
     color: var(--result-text-color);
-    text-align: right;
-    width: 20%;
+    text-align: center;
+    width: var(--resizeable-width);
     border-left: 1px solid #e3e3e3;
+    overflow: hidden;
 }
 
 .app__total_container {
