@@ -216,6 +216,7 @@ label::after {
 
 #app__total__output {
     margin: 0px 10px;
+    font-size: 0.75 rem;
 }
 
 /* Dark Mode */

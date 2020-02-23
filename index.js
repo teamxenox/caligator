@@ -1,14 +1,11 @@
 'use strict';
 const path = require('path');
 const { app, BrowserWindow, Menu } = require('electron');
-/// const {autoUpdater} = require('electron-updater');
 const { is } = require('electron-util');
 const unhandled = require('electron-unhandled');
 const debug = require('electron-debug');
 const contextMenu = require('electron-context-menu');
-const config = require('./store');
 const menu = require('./menu');
-const cacheRates = require('./utils/cacheRates');
 
 unhandled();
 debug();
@@ -43,8 +40,6 @@ const createMainWindow = async () => {
 
 	win.on('ready-to-show', async () => {
 		win.show();
-
-		await cacheRates(config);
 	});
 
 	win.on('closed', () => {
@@ -89,9 +84,4 @@ app.on('activate', async () => {
 	await app.whenReady();
 	Menu.setApplicationMenu(menu);
 	mainWindow = await createMainWindow();
-
-	// const favoriteCalculator = config.get('favoriteCalculator');
-	// mainWindow.webContents.executeJavaScript(
-	// 	`document.querySelector('header p').textContent = 'Your favorite calculator  is ${favoriteCalculator}'`
-	// );
 })();
