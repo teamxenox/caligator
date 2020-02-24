@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"postinstall": "electron-builder install-app-deps",
-		"lint": "xo",
+		"lint": "xo --fix",
 		"test": "xo && npm run lint",
 		"start": "electron .",
 		"pack": "electron-builder --dir",
@@ -50,7 +50,8 @@
 		"envs": [
 			"node",
 			"browser"
-		]
+        ],
+        "ignore": ["deprecated/**.js"]
 	},
 	"np": {
 		"publish": false,
