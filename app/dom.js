@@ -49,6 +49,8 @@ if (process.platform === 'darwin') {
 
 /** @const {Object} */
 const appPopup = document.querySelectorAll('.modal')[0];
+const appInput = document.querySelectorAll('.app__input')[0];
+const appOutput = document.querySelectorAll('.app__output')[0];
 
 (function() {
 	const { BrowserWindow } = require('electron').remote;
@@ -71,6 +73,11 @@ const appPopup = document.querySelectorAll('.modal')[0];
 			.addEventListener('click', () => {
 				appPopup.style.display = 'block';
 			});
+
+		document.querySelector('#app--reset').addEventListener('click', () => {
+			appInput.value = '';
+			appOutput.innerHTML = '';
+		});
 
 		document
 			.querySelector('#modal__popup--close')
@@ -132,6 +139,7 @@ const appPopup = document.querySelectorAll('.modal')[0];
 
 /** #3
  * Handling Resizable columns
+ * @returns inputDom
  */
 const getResizeableElement = () => {
 	return document.querySelector('.app__input');
@@ -183,7 +191,7 @@ const getPaneWidth = () => {
 
 const startDragging = event => {
 	event.preventDefault();
-	const host = getResizeableElement();
+	// Const host = getResizeableElement();
 	const startingPaneWidth = getPaneWidth();
 	const xOffset = event.pageX;
 
@@ -204,17 +212,14 @@ const startDragging = event => {
 			return;
 		}
 
-		const paneOriginAdjustment = 'left' === 'right' ? 1 : -1;
+		const paneOriginAdjustment = -1;
 		setPaneWidth(
 			(xOffset - moveEvent.pageX) * paneOriginAdjustment +
 				startingPaneWidth
 		);
 	};
 
-	const remove = document.body.addEventListener(
-		'pointermove',
-		mouseDragHandler
-	);
+	document.body.addEventListener('pointermove', mouseDragHandler);
 };
 
 getHandleElement().addEventListener('mousedown', startDragging);

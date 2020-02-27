@@ -135,6 +135,10 @@ label::after {
     background-image: url('../static//menu.svg');
 }
 
+.icon--bin {
+	background-image: url('../static//bin.svg');
+}
+
 .app__container {
     display: flex;
     height: 100vh;
