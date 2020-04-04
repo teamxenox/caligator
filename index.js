@@ -35,6 +35,8 @@ const createMainWindow = async () => {
 		show: false,
 		width: 350,
 		height: 350,
+		minHeight: 350,
+		minWidth: 350,
 		frame: false
 	});
 
