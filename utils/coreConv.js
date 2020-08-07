@@ -26,8 +26,8 @@ const weightUnits = {
 	ton: 0.000001102311
 };
 
-// The supported length units
-/*
+/* 
+ * The supported length units
  * The property is the abbreviation of supported units.
  * The value needed to convert to or from meter.
  */
@@ -43,6 +43,18 @@ const lengthUnits = {
 	hm: 0.01,
 	km: 0.001,
 	mi: 0.0006213712
+};
+
+const volumeUnits = {
+	l: 999.99,
+	ml: 999998.87,
+	cm3: 1000000,
+	m3: 1,
+	pint: 2113.374,
+	gal: 219.96,
+	tablespoon: 67627.96,
+	cfeet: 35.31,
+	cinch: 61023.80
 };
 
 // The supported temperature units
@@ -84,6 +96,8 @@ const convert = (mode, value, oldUnit, newUnit) => {
 			return convertRatio(value, oldUnit, newUnit);
 		case 'p':
 			return convertPercent(value, oldUnit, newUnit);
+		case 'v':
+			return convertVolume(value, oldUnit, newUnit);
 	}
 };
 
@@ -109,7 +123,6 @@ const convertRatio = (ratio, ofValue) => {
 const convertPercent = (percent, _, ofValue) => {
 	return (percent / 100) * ofValue;
 };
-
 
 /**
  * This is a function to perform weight conversion
@@ -163,6 +176,18 @@ const convertTemperature = (value, oldUnit, newUnit) => {
 };
 
 /**
+ * This is a function to perform temperature conversion
+ * @param {Number} value - Value on which conversion is to be performed
+ * @param {String} oldUnit - Unit to be converted from
+ * @param {String} newUnit - Unit to be converted to
+ * @returns {Number} - result after performing conversion
+ */
+const convertVolume = (value, oldUnit, newUnit) => {
+	if (oldUnit === newUnit) return value;
+	return (value / volumeUnits[oldUnit]) * volumeUnits[newUnit];
+}
+
+/**
  * This is a function to perform currency conversion
  * @param {Number} value - Value on which conversion is to be performed
  * @param {String} oldUnit - Unit to be converted from
@@ -181,5 +206,6 @@ module.exports = {
 	lengthUnits,
 	weightUnits,
 	temperatureUnits,
-	currencyUnits
+	currencyUnits,
+	volumeUnits
 };

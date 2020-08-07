@@ -14,9 +14,16 @@ const textForOperators = {
 	less: '-',
 	'divided by': '/',
 	by: '/',
+	'to power': '^',
 	'multiplied by': '*',
 	into: '*',
-	cross: '*'
+	cross: '*',
+	sin: 'sin',
+	cos: 'cos',
+	tan: 'tan',
+	cosec: 'cosec',
+	sec: 'sec',
+	cot: 'cot'
 };
 
 /** @const {string} */

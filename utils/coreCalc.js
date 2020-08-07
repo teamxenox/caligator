@@ -5,7 +5,8 @@
  */
 
 // the operators to be used in the expression
-const operators = ['+', '-', '*', '/', '%', '(', ')', '**', '|', '&', '^'];
+const operators = ['+', '-', '*', '/', '%', '(', ')', '**', '|', '&', '^', 
+'sin', 'cos', 'tan', 'sec', 'cosec', 'cot'];
 
 /**
  * The precedence of the operators from low to high
@@ -21,7 +22,10 @@ const precedence = {
     '*': 4,
     '/': 4,
     '%': 4,
-    '**': 5
+    '**': 5,
+    'j':6,
+    'k':6,
+    'l':6
 };
 
 /**
@@ -141,6 +145,12 @@ const operate = (operator, operand1, operand2) => {
             return operand1 | operand2;
         case '^':
             return operand1 ^ operand2;
+        case 'j':
+            return Math.sin(operand1);
+        case 'k':
+            return Math.cos(operand1);
+        case 'l':
+            return Math.tan(operand1);
     }
 };
 
