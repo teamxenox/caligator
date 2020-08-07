@@ -41,7 +41,7 @@ An open source kickass cross platform Calculator with power of alligator 🐊
 
 ## TODO
 - [ ] Trigonometric functions
-= [ ] Base conversions
+- [ ] Base conversions
 - [ ] Export Options
 - [ ] Font size preferences
 - [ ] More themes 🎉
