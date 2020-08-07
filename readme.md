@@ -13,6 +13,7 @@ An open source kickass cross platform Calculator with power of alligator 🐊
 
 - Currency conversion
 - Weight and length conversion
+- Volume conversion
 - Temperature conversion
 - Percentage and ratio calculation
 - Disable autoplay for videos
@@ -39,6 +40,8 @@ An open source kickass cross platform Calculator with power of alligator 🐊
 
 
 ## TODO
+- [ ] Trigonometric functions
+= [ ] Base conversions
 - [ ] Export Options
 - [ ] Font size preferences
 - [ ] More themes 🎉
