@@ -1,12 +1,13 @@
 'use strict';
 
+const mathJs = require('mathjs');
+
 /* TODO:
  * division by 0 returns nothing
  */
 
 // the operators to be used in the expression
-const operators = ['+', '-', '*', '/', '%', '(', ')', '**', '|', '&', '^', 
-'sin', 'cos', 'tan', 'sec', 'cosec', 'cot'];
+const operators = ['+', '-', '*', '/', '%', '(', ')', '**', '|', '&', '^', 'sin', 'cos', 'tan'];
 
 /**
  * The precedence of the operators from low to high
@@ -23,9 +24,9 @@ const precedence = {
     '/': 4,
     '%': 4,
     '**': 5,
-    'j':6,
-    'k':6,
-    'l':6
+    'sin': 6,
+    'cos': 6,
+    'tan': 6
 };
 
 /**
@@ -145,12 +146,12 @@ const operate = (operator, operand1, operand2) => {
             return operand1 | operand2;
         case '^':
             return operand1 ^ operand2;
-        case 'j':
-            return Math.sin(operand1);
-        case 'k':
-            return Math.cos(operand1);
-        case 'l':
-            return Math.tan(operand1);
+        case 'sin':
+            return mathJs.sin(operand1);
+        case 'cos':
+            return mathJs.cos(operand1);
+        case 'tan':
+            return mathJs.tan(operand1);
     }
 };
 

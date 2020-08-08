@@ -12,18 +12,13 @@ const textForOperators = {
 	minus: '-',
 	subtract: '-',
 	less: '-',
-	'divided by': '/',
 	by: '/',
-	'to power': '^',
-	'multiplied by': '*',
+	power : '^',
 	into: '*',
 	cross: '*',
 	sin: 'sin',
 	cos: 'cos',
-	tan: 'tan',
-	cosec: 'cosec',
-	sec: 'sec',
-	cot: 'cot'
+	tan: 'tan'
 };
 
 /** @const {string} */
@@ -95,8 +90,7 @@ const evaluate = exp => {
 	if (currencyRegExp.test(exp.toUpperCase())) {
 		return parseExp(exp.toUpperCase(), currencyRegExp, 'c');
 	}
-
-	return mathJs.evaluate(exp);
+		return mathJs.evaluate(exp);
 };
 
 const main = exp => {
