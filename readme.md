@@ -40,7 +40,7 @@ An open source kickass cross platform Calculator with power of alligator 🐊
 
 
 ## TODO
-- [ ] Trigonometric functions
+- :heavy_check_mark: Trigonometric functions
 - [ ] Base conversions
 - [ ] Export Options
 - [ ] Font size preferences
