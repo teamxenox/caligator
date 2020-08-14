@@ -25,11 +25,11 @@ An open source kickass cross platform Calculator 🐊
 
 ### macOS
 
-[**Download**](https://github.com/sarthology/caligator/releases/latest) the `.dmg` file.
+[**Download**](https://github.com/riju-stone/caligator/releases) the `.dmg` file.
 
 ### Linux
 
-[**Download**](https://github.com/sarthology/caligator/releases/latest) the `.AppImage` or `.deb` file.
+[**Download**](https://github.com/riju-stone/caligator/releases) the `.AppImage` or `.deb` file.
 
 *The AppImage needs to be [made executable](http://discourse.appimage.org/t/how-to-make-an-appimage-executable/80) after download.*
 
@@ -87,3 +87,8 @@ Then edit the automatically created GitHub Releases draft and publish.
 ## License
 
 - [MIT License](https://github.com/sarthology/caligator/blob/master/license.md)
+
+## Buy Me a Coffee
+
+- Any contribution is much appretiated and will help me carry on my work. If you like my work you coud buy me a coffee here, 
+[Paypal](paypal.me/rijustone)
