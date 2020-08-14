@@ -90,5 +90,6 @@ Then edit the automatically created GitHub Releases draft and publish.
 
 ## Buy Me a Coffee
 
-- Any contribution is much appretiated and will help me carry on my work. If you like my work you coud buy me a coffee here, 
-[Paypal](paypal.me/rijustone)
+- Any contribution is much appretiated and will help me carry on with my work.
+If you like my work you could buy me a coffee here, 
+[Paypal](https://www.paypal.me/rijustone)
