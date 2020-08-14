@@ -35,7 +35,7 @@
 
 ### Windows
 
-[**Download**](https://github.com/sarthology/caligator/releases/latest) the `.exe` file.
+[**Download**](https://github.com/riju-stone/caligator/releases) the `.exe` file.
 
 
 ## TODO
