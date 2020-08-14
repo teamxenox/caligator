@@ -7,7 +7,7 @@ const mathJs = require('mathjs');
  */
 
 // the operators to be used in the expression
-const operators = ['+', '-', '*', '/', '%', '(', ')', '**', '|', '&', '^', 'sin', 'cos', 'tan'];
+const operators = ['+', '-', '*', '/', '%', '(', ')', '**', '|', '&', '^', 'sin', 'cos', 'tan', 'sec', 'cosec', 'cot', 'log'];
 
 /**
  * The precedence of the operators from low to high
@@ -26,7 +26,11 @@ const precedence = {
     '**': 5,
     'sin': 6,
     'cos': 6,
-    'tan': 6
+    'tan': 6,
+    'cosec': 6,
+    'sec': 6,
+    'cot': 6,
+    'log': 7
 };
 
 /**
@@ -152,6 +156,14 @@ const operate = (operator, operand1, operand2) => {
             return mathJs.cos(operand1);
         case 'tan':
             return mathJs.tan(operand1);
+        case 'cosec':
+            return 1/(mathJs.sin(operand1));
+        case 'cos':
+            return mathJs.sec(operand1);
+        case 'tan':
+            return mathJs.cot(operand1);
+        case 'log':
+            return mathJs.log(operand1);
     }
 };
 

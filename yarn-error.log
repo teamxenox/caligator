@@ -1,0 +1,105 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js dist
+
+PATH: 
+  C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.0\libnvvp;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python38\Scripts\;C:\Python38\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;C:\Windows\System32;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\NVIDIA Corporation\Nsight Compute 2020.1.1\;C:\Users\Riju\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\Riju\AppData\Local\Programs\Python\Python38\;C:\Users\Riju\AppData\Roaming\npm;C:\Users\Riju\AppData\Local\Yarn\bin;C:\Users\Riju\AppData\Local\atom\bin;C:\MinGW\bin;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Users\Riju\AppData\Local\Programs\Microsoft VS Code\bin;C:\src\flutter\bin;D:\AndroidStudio\build-tools\29.0.3;C:\Program Files\Java\jre1.8.0_251\bin;;C:\Users\Riju\AppData\Local\Microsoft\WindowsApps
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  14.0.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: D:\Projects\App Development\caligator\package.json: Unexpected token } in JSON at position 1480
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+  	"name": "caligator",
+  	"productName": "caligator",
+  	"version": "0.0.1-1",
+  	"description": "The best app calculator ever",
+  	"license": "MIT",
+  	"repository": "sarthology/caligator",
+  	"author": {
+  		"name": "Sarthology",
+  		"email": "dummy@mail.com",
+  		"url": "https://sarthak.it"
+  	},
+  	"scripts": {
+  		"postinstall": "electron-builder install-app-deps",
+  		"lint": "xo",
+  		"test": "xo && npm start lint",
+  		"start": "electron .",
+  		"pack": "electron-builder --dir",
+  		"dist": "electron-builder --macos --linux --windows --publish always",
+  		"release": "np"
+  	},
+  	"husky": {
+  		"hooks": {
+  			"pre-commit": "lint-staged"
+  		}
+  	},
+  	"lint-staged": {
+  		"{*,app}.js": "npm start lint"
+  	},
+  	"dependencies": {
+  		"axios": "^0.19.0",
+  		"electron-context-menu": "^0.12.1",
+  		"electron-debug": "^3.0.0",
+  		"electron-store": "^3.3.0",
+  		"electron-unhandled": "^2.2.0",
+  		"electron-updater": "^4.0.6",
+  		"electron-util": "^0.12.0",
+  		"mathjs": "^6.2.2",
+  		"nom": "0.0.3"
+  	},
+  	"devDependencies": {
+  		"electron": "^4.0.1",
+  		"electron-builder": "^22.8.1",
+  		"husky": "^3.0.9",
+  		"lint-staged": "^9.4.2",
+  		"np": "^6.3.2",
+  		"xo": "^0.32.1"
+  	},
+  	"xo": {
+  		"prettier": true,
+  		"envs": [
+  			"node",
+  			"browser"
+  		]
+  	},
+  	"np": {
+  		"publish": false,
+  		"releaseDraft": false
+  	},
+  	"build": {
+  		"appId": "com.sarthak.caligator",
+  		"linux": {
+  			"target": [
+  				"AppImage",
+  				"deb"
+  			],
+  			"category": "Utility",
+  			"icon": "build/icon.png"
+  		},
+  		"win": {
+  			"target": "nsis",
+  			"icon": "build/icon.png",
+  		}
+  	}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

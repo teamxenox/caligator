@@ -57,6 +57,13 @@ const volumeUnits = {
 	cinch: 61023.80
 };
 
+const baseUnits = {
+	bin: 2,
+	dec: 10,
+	oct: 8,
+	hex: 16
+};
+
 // The supported temperature units
 /*
  * The property is the abbreviation of supported units.
@@ -185,6 +192,18 @@ const convertTemperature = (value, oldUnit, newUnit) => {
 const convertVolume = (value, oldUnit, newUnit) => {
 	if (oldUnit === newUnit) return value;
 	return (value / volumeUnits[oldUnit]) * volumeUnits[newUnit];
+}
+
+/**
+ * This is a function to perform temperature conversion
+ * @param {Number} value - Value on which conversion is to be performed
+ * @param {String} oldUnit - Unit to be converted from
+ * @param {String} newUnit - Unit to be converted to
+ * @returns {Number} - result after performing conversion
+ */
+const convertBase = (value, oldUnit, newUnit) => {
+	value = Number(value);
+
 }
 
 /**

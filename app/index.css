@@ -8,9 +8,14 @@
 :root {
     --light-color: #fff;
     --dark-color: #202646;
+    --angular-color: #551293;
+    --ocean-color: #2CC8B8;
     --light-text-color: #ffd631;
     --dark-text-color: #ff8414;
+    --angular-text-color: #FF0097;
+    --ocean-text-color: #0F5378;
     --result-text-color: #00ff76;
+    --ocean-result-text-color: #8F0EC3;
     --font-size: 16px;
     --icon-white: invert(100%) sepia(100%) saturate(0%) hue-rotate(121deg) brightness(107%) contrast(104%);
     --icon-black: invert(0%) sepia(10%) saturate(7500%) hue-rotate(16deg) brightness(108%) contrast(93%);
@@ -144,7 +149,6 @@ label::after {
 
 .app__output p {
     margin: 0;
-    font-weight: 900;
     cursor: pointer;
     height: 1.1875rem;
 }
@@ -160,6 +164,7 @@ label::after {
 
 .app__input,
 .app__output {
+    font-family: 'open_sansregular';
     width: 50%;
     font-size: 0.8rem;
     font-weight: 900;
@@ -203,7 +208,7 @@ label::after {
 .app__output {
     --resizeable-width: 25%;
     color: var(--result-text-color);
-    text-align: center;
+    text-align: right;
     width: var(--resizeable-width);
     border-left: 1px solid #e3e3e3;
     overflow: hidden;
@@ -244,5 +249,68 @@ label::after {
 }
 
 [data-theme^='dark'] .icon {
+    filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
+}
+
+/* Angular Mode */
+
+[data-theme^='angular'] body {
+    background: var(--angular-color);
+    color: var(--light-color);
+}
+
+[data-theme^='angular'] .modal {
+    background: var(--angular-color);
+}
+
+[data-theme^='angular'] .modal__title,
+[data-theme^='angular'] .app__title {
+    color: var(--light-color);
+}
+
+[data-theme^='angular'] .modal__head,
+[data-theme^='angular'] .app__head {
+    background: var(--angular-color);
+}
+
+[data-theme^='angular'] .app__input {
+    color: var(--angular-text-color);
+}
+
+[data-theme^='angular'] .icon {
+    filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
+}
+
+
+/* Ocean Mode */
+
+[data-theme^='ocean'] body {
+    background: var(--ocean-color);
+    color: var(--dark-color);
+}
+
+[data-theme^='ocean'] .modal {
+    background: var(--ocean-color);
+}
+
+[data-theme^='ocean'] .modal__title,
+[data-theme^='ocean'] .app__title {
+    color: var(--dark-color);
+}
+
+[data-theme^='ocean'] .modal__head,
+[data-theme^='ocean'] .app__head {
+    background: var(--ocean-color);
+}
+
+[data-theme^='ocean'] .app__input {
+    color: var(--ocean-text-color);
+}
+
+[data-theme^='ocean'] .app__output {
+    color: var(--ocean-result-text-color);
+}
+
+[data-theme^='ocean'] .icon {
     filter: invert(98%) sepia(3%) saturate(167%) hue-rotate(326deg) brightness(118%) contrast(100%);
 }

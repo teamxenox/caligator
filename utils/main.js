@@ -18,7 +18,10 @@ const textForOperators = {
 	cross: '*',
 	sin: 'sin',
 	cos: 'cos',
-	tan: 'tan'
+	tan: 'tan',
+	cosec: 'cosec',
+	sec: 'sec',
+	cot: 'cot'
 };
 
 /** @const {string} */

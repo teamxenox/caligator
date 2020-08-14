@@ -1,14 +1,17 @@
 {
-	"name": "caligator",
+	"name": "Caligator",
 	"productName": "caligator",
-	"version": "0.0.1-0",
-	"description": "The best app calculator ever",
+	"version": "0.0.2",
+	"description": "The smartest calculator app ever",
 	"license": "MIT",
-	"repository": "sarthology/caligator",
+	"repository": {
+		"type": "git",
+		"url": "https://www.github.com/riju-stone/caligator.git"
+	},
 	"author": {
-		"name": "Sarthology",
-		"email": "dummy@mail.com",
-		"url": "https://sarthak.it"
+		"name": "Arighna Chakraborty",
+		"email": "riju23chakra@gmail.com",
+		"url": "https://www.github.com/riju-stone"
 	},
 	"scripts": {
 		"postinstall": "electron-builder install-app-deps",
@@ -16,7 +19,7 @@
 		"test": "xo && npm start lint",
 		"start": "electron .",
 		"pack": "electron-builder --dir",
-		"dist": "electron-builder --macos --linux --windows --publish always",
+		"dist": "electron-builder --windows",
 		"release": "np"
 	},
 	"husky": {
@@ -35,7 +38,8 @@
 		"electron-unhandled": "^2.2.0",
 		"electron-updater": "^4.0.6",
 		"electron-util": "^0.12.0",
-		"mathjs": "^6.2.2"
+		"mathjs": "^6.2.2",
+		"nom": "0.0.3"
 	},
 	"devDependencies": {
 		"electron": "^4.0.1",
@@ -57,9 +61,10 @@
 		"releaseDraft": false
 	},
 	"build": {
-		"appId": "com.sarthak.caligator",
+		"appId": "com.riju.caligator",
 		"mac": {
-			"category": "public.app-category.utility"
+			"category": "public.app-category.utility",
+			"icon": "build/icon.png"
 		},
 		"dmg": {
 			"iconSize": 160,
@@ -81,7 +86,12 @@
 				"AppImage",
 				"deb"
 			],
-			"category": "Utility"
+			"category": "Utility",
+			"icon": "build/icon.png"
+		},
+		"win": {
+			"target": "nsis",
+			"icon": "build/icon.png"
 		}
 	}
 }
