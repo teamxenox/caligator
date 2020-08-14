@@ -5,7 +5,7 @@
 An open source kickass cross platform Calculator with power of alligator 🐊
 
 
-![Caligator](https://postimg.cc/0bnR0mBv)
+![Caligator](https://i.postimg.cc/3x587Fjk/calligator.png)
 
 
 
