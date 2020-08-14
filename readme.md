@@ -42,7 +42,7 @@ An open source kickass cross platform Calculator with power of alligator 🐊
 ## TODO
 :heavy_check_mark: Trigonometric functions
 - [ ] Base conversions
-- [ ] Logarithmic functions
+:heavy_check_mark: Logarithmic functions
 - [ ] Export Options
 - [ ] Font size preferences
 - [ ] More themes 🎉
