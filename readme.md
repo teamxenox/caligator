@@ -2,7 +2,7 @@
 [![Gitter](https://badges.gitter.im/Caligatorapp/community.svg)](https://gitter.im/Caligatorapp/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) ![](https://travis-ci.org/sarthology/caligator.svg?branch=master)
  
 
-An open source kickass cross platform Calculator 🐊
+🐊 An open source kickass cross platform Calculator
 
 ![Caligator](https://i.postimg.cc/3x587Fjk/calligator.png)
 
