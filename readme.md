@@ -37,6 +37,10 @@ An open source kickass cross platform Calculator with power of alligator 🐊
 
 [**Download**](https://github.com/sarthology/caligator/releases/latest) the `.exe` file.
 
+***Notes***
+
+* Ignore Windows warning for untrust editor and explain how to allow installation
+* Ignore firewall alert and enable [Excange Generate API](api.exchangerateapi.io)  communication for currency converter
 
 ## TODO
 - [ ] Export Options
@@ -48,8 +52,6 @@ An open source kickass cross platform Calculator with power of alligator 🐊
 1. 🍴 Fork this repo!
 2. **HACK AWAY!** 🔨🔨🔨
 3. 🔃 Create a new pull request.
-
-
 
 ### Run
 
