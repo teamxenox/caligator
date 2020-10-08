@@ -31,6 +31,12 @@ if (process.platform === 'darwin') {
 		}
 	};
 
+	const defaultFontSize = () => {
+		if (window.localStorage.fontSize === undefined) {
+			window.localStorage.fontSize = 16;
+		}
+	};
+
 	systemPreferences.subscribeNotification(
 		'AppleInterfaceThemeChangedNotification',
 		defaultTheme
@@ -38,6 +44,7 @@ if (process.platform === 'darwin') {
 
 	defaultTheme();
 	defaultPoint();
+	defaultFontSize();
 }
 
 // Main
@@ -290,6 +297,14 @@ const appPopup = document.querySelectorAll('.modal')[0];
 				const decimalPoint = e.target.value;
 				window.localStorage.decimalPoint = decimalPoint;
 			});
+
+		document
+			.querySelector('#font-size-switcher')
+			.addEventListener('change', e => {
+				const fontSize = e.target.value;
+				document.querySelector('html').style.fontSize = fontSize+'px';
+				window.localStorage.fontSize = fontSize;
+			});
 	}
 
 	document.onreadystatechange = () => {
@@ -302,6 +317,9 @@ const appPopup = document.querySelectorAll('.modal')[0];
 
 			const decimalPoint = window.localStorage.decimalPoint || 4;
 
+			const fontSize = window.localStorage.fontSize || 16;
+			document.querySelector('html').style.fontSize = fontSize+'px'
+
 			if (userTheme === 'auto') {
 				document.documentElement.setAttribute(
 					'data-theme',
@@ -313,6 +331,7 @@ const appPopup = document.querySelectorAll('.modal')[0];
 
 			document.querySelector('#theme-switcher').value = userTheme;
 			document.querySelector('#decimal-switcher').value = decimalPoint;
+			document.querySelector('#font-size-switcher').value = fontSize;
 		}
 	};
 })();
