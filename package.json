@@ -37,7 +37,7 @@
 		"electron-store": "^3.3.0",
 		"electron-unhandled": "^2.2.0",
 		"electron-updater": "^4.0.6",
-		"electron-util": "^0.12.0",
+		"electron-util": "^0.12.3",
 		"mathjs": "^6.2.2",
 		"nom": "0.0.3"
 	},
