@@ -39,11 +39,11 @@
 
 
 ## TODO
-:heavy_check_mark: Trigonometric functions
-:heavy_check_mark: Logarithmic functions
+- :heavy_check_mark: Trigonometric functions
+- :heavy_check_mark: Logarithmic functions
 - [ ] Base conversions
 - [ ] Export Options
-- [ ] Font size preferences
+- :heavy_check_mark: Font size preferences
 - [ ] More themes 🎉
 
 ## Contributing
