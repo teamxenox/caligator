@@ -102,6 +102,7 @@ const macosTemplate = [
 	]),
 	{
 		role: 'fileMenu',
+		label: 'File',
 		submenu: [
 			{
 				label: 'Custom'
