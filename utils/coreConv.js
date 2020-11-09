@@ -4,8 +4,8 @@ const config = require('../store');
 const money = require('../lib/money');
 const defaultRates = require('./defaultRates');
 
-// The supported weight units
-/*
+/**
+ * The supported weight units
  * The property is the abbreviation of supported units.
  * The value needed to convert to or from gram.
  * Unit's abbreviations could be found in https://www.weightconversions.org/abbreviations.htm
@@ -26,7 +26,7 @@ const weightUnits = {
 	ton: 0.000001102311
 };
 
-/* 
+/**
  * The supported length units
  * The property is the abbreviation of supported units.
  * The value needed to convert to or from meter.
@@ -45,6 +45,10 @@ const lengthUnits = {
 	mi: 0.0006213712
 };
 
+/**
+ * The supported volume units.
+ * The property is the abbreviation of supported units.
+*/
 const volumeUnits = {
 	l: 999.99,
 	ml: 999998.87,
@@ -57,6 +61,10 @@ const volumeUnits = {
 	cinch: 61023.80
 };
 
+/**
+ * The supported base units of numbers.
+ * bin for binary, dec for decimal, oct for octal, and finally hex for hexadecimal.
+*/
 const baseUnits = {
 	bin: 2,
 	dec: 10,
@@ -64,8 +72,8 @@ const baseUnits = {
 	hex: 16
 };
 
-// The supported temperature units
 /*
+ * The supported temperature units 
  * The property is the abbreviation of supported units.
  */
 const temperatureUnits = ['c', 'f', 'k'];
@@ -183,7 +191,7 @@ const convertTemperature = (value, oldUnit, newUnit) => {
 };
 
 /**
- * This is a function to perform temperature conversion
+ * This is a function to perform volume conversion
  * @param {Number} value - Value on which conversion is to be performed
  * @param {String} oldUnit - Unit to be converted from
  * @param {String} newUnit - Unit to be converted to
@@ -195,7 +203,7 @@ const convertVolume = (value, oldUnit, newUnit) => {
 }
 
 /**
- * This is a function to perform temperature conversion
+ * This is a function to perform base conversion
  * @param {Number} value - Value on which conversion is to be performed
  * @param {String} oldUnit - Unit to be converted from
  * @param {String} newUnit - Unit to be converted to
