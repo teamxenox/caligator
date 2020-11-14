@@ -41,7 +41,7 @@ const createMainWindow = async () => {
 		frame: false,
 		icon: path.join(__dirname, '/build/icon.png'),
 		webPreferences:{
-			devTools: false,
+			devTools: true,
 			nodeIntegration: true,
 			enableRemoteModule: true
 		}

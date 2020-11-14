@@ -72,12 +72,6 @@ const baseUnits = {
 	hex: 16
 };
 
-/*
- * The supported temperature units 
- * The property is the abbreviation of supported units.
- */
-const temperatureUnits = ['c', 'f', 'k'];
-
 /**
  * get cached currency rates
  */
@@ -99,12 +93,14 @@ money.fx.rates = currencyUnits;
  */
 const convert = (mode, value, oldUnit, newUnit) => {
 	switch (mode) {
+		case 'b':
+			return convertBase(value, oldUnit, newUnit);
 		case 'w':
 			return convertWeight(value, oldUnit, newUnit);
 		case 'l':
 			return convertLength(value, oldUnit, newUnit);
 		case 't':
-			return convertTemperature(value, oldUnit, newUnit);
+			return convertTemp(value, oldUnit, newUnit);
 		case 'c':
 			return convertCurrency(value, oldUnit, newUnit);
 		case 'r':
@@ -117,10 +113,9 @@ const convert = (mode, value, oldUnit, newUnit) => {
 };
 
 /**
- * This is a function to perform weight conversion
- * @param {Number} value - Value on which conversion is to be performed
- * @param {String} oldUnit - Unit to be converted from
- * @param {String} newUnit - Unit to be converted to
+ * This is a function to perform ratio conversions
+ * @param {Number} ratio - Value on which conversion is to be performed
+ * @param {String} ofValue - Unit to be converted from
  * @returns {Number} - result after performing conversion
  */
 const convertRatio = (ratio, ofValue) => {
@@ -169,23 +164,24 @@ const convertLength = (value, oldUnit, newUnit) => {
  * @param {String} oldUnit - Unit to be converted from
  * @param {String} newUnit - Unit to be converted to
  * @returns {Number} - result after performing conversion
+ * Not working - Need a fix...
  */
-const convertTemperature = (value, oldUnit, newUnit) => {
+const convertTemp = (value, oldUnit, newUnit) => {
 	value = Number(value);
 
 	if (oldUnit === newUnit) {
 		return value;
-	} else if (oldUnit === 'c' && newUnit === 'f') {
+	} else if (oldUnit === 'C' && newUnit === 'F') {
 		return (9 / 5) * value + 32;
-	} else if (oldUnit === 'k' && newUnit === 'f') {
+	} else if (oldUnit === 'K' && newUnit === 'F') {
 		return (9 / 5) * (value - 273) + 32;
-	} else if (oldUnit === 'f' && newUnit === 'c') {
+	} else if (oldUnit === 'F' && newUnit === 'C') {
 		return (5 / 9) * (value - 32);
-	} else if (oldUnit === 'c' && newUnit === 'k') {
+	} else if (oldUnit === 'C' && newUnit === 'K') {
 		return value + 273;
-	} else if (oldUnit === 'k' && newUnit === 'c') {
+	} else if (oldUnit === 'K' && newUnit === 'C') {
 		return value - 273;
-	} else if (oldUnit === 'f' && newUnit === 'k') {
+	} else if (oldUnit === 'F' && newUnit === 'K') {
 		return (5 / 9) * (value - 32) + 273;
 	}
 };
@@ -212,6 +208,35 @@ const convertVolume = (value, oldUnit, newUnit) => {
 const convertBase = (value, oldUnit, newUnit) => {
 	value = Number(value);
 
+	if(oldUnit === newUnit){
+		return value;
+	} else if(oldUnit === 'bin' && newUnit === 'dec'){
+
+	} else if(oldUnit === 'dec' && newUnit === 'bin'){
+
+	} else if(oldUnit === 'dec' && newUnit === 'oct'){
+
+	} else if(oldUnit === 'oct' && newUnit === 'dec') {
+
+	} else if(oldUnit === 'bin' && newUnit === 'oct') {
+
+	} else if(oldUnit === 'oct' && newUnit === 'bin') {
+
+	} else if(oldUnit === 'oct' && newUnit === 'dec') {
+
+	} else if(oldUnit === 'bin' && newUnit === 'hex') {
+
+	} else if(oldUnit === 'hex' && newUnit === 'bin') {
+
+	} else if(oldUnit === 'dec' && newUnit === 'hex') {
+
+	} else if(oldUnit === 'hex' && newUnit === 'dec') {
+
+	} else if(oldUnit === 'oct' && newUnit === 'hex') {
+
+	} else if(oldUnit === 'hex' && newUnit === 'oct') {
+
+	} 
 }
 
 /**
@@ -232,7 +257,7 @@ module.exports = {
 	convert,
 	lengthUnits,
 	weightUnits,
-	temperatureUnits,
 	currencyUnits,
-	volumeUnits
+	volumeUnits,
+	baseUnits
 };

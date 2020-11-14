@@ -6,7 +6,6 @@ const coreConv = require('./coreConv');
 /** @const {Object} */
 const textForOperators = {
 	plus: '+',
-	'added to': '+',
 	adds: '+',
 	with: '+',
 	minus: '-',
@@ -62,7 +61,7 @@ const filterValues = v =>
  * This function parses the given expression with the provided regExp and passes the values to the core modules
  * @param {string} inp - each
  * @param {object} type - regExp type
- * @param {string} unit - conversion for 'l', 'c', 'w', 't', 'r', 'p' for length, currency and weight. check coreConv.convert(mode)
+ * @param {string} unit - conversion for 'b', 'l', 'c', 'w', 't', 'r', 'p' for base, length, currency, weight, temperature, ratio and percentage. check coreConv.convert(mode)
  * @returns {number}
  */
 const parseExp = (inp, type, unit) => {
