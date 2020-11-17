@@ -255,6 +255,13 @@ const appPopup = document.querySelectorAll('.modal')[0];
 				window.minimize();
 			});
 
+		document
+			.querySelector('#app--maximize')
+			.addEventListener('click', () => {
+				const window = BrowserWindow.getFocusedWindow();
+				window.maximize();
+			});
+
 		document.querySelector('#app--close').addEventListener('click', () => {
 			const window = BrowserWindow.getFocusedWindow();
 			window.close();
