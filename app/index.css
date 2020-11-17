@@ -122,6 +122,10 @@ label::after {
     background-image: url('../static/minimize.svg');
 }
 
+.icon--maximize {
+    background-image: url('../static/maximize.svg');
+}
+
 .icon--close {
     background-image: url('../static/close.svg');
 }
