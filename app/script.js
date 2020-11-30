@@ -67,7 +67,7 @@ let equationsCollected = [];
  */
 function getSelection(textbox) {
 	let selectedText = null;
-	let activeElement = document.activeElement;
+	const activeElement = document.activeElement;
 
 	// all browsers (including IE9 and up), except IE before version 9
 	if (
@@ -248,6 +248,11 @@ const appPopup = document.querySelectorAll('.modal')[0];
 	const { BrowserWindow } = require('electron').remote;
 
 	function init() {
+
+		BrowserWindow.getAllWindows()[0].webContents.on("devtools-opened", () => {
+			BrowserWindow.getAllWindows()[0].webContents.closeDevTools();
+		});
+
 		document
 			.querySelector('#app--minimize')
 			.addEventListener('click', () => {
