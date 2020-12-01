@@ -84,6 +84,8 @@ const convert = (mode, value, oldUnit, newUnit) => {
 			return convertRatio(value, oldUnit, newUnit);
 		case 'p':
 			return convertPercent(value, oldUnit, newUnit);
+		default:
+			''
 	}
 };
 
@@ -109,7 +111,6 @@ const convertRatio = (ratio, ofValue) => {
 const convertPercent = (percent, _, ofValue) => {
 	return (percent / 100) * ofValue;
 };
-
 
 /**
  * This is a function to perform weight conversion

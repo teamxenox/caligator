@@ -20,6 +20,9 @@ const textForOperators = {
 };
 
 /** @const {string} */
+const temperatureUnits = coreConv.temperatureUnits.join('|');
+
+/** @const {string} */
 const currencyUnits = Object.keys(coreConv.currencyUnits).join('|');
 
 /** @const {object} */
@@ -39,7 +42,16 @@ const generateRegExpForUnits = units =>
 	);
 
 /** @const {object} */
+const temperatureRegExp = generateRegExpForUnits(temperatureUnits);
+
+/** @const {object} */
 const currencyRegExp = generateRegExpForUnits(currencyUnits);
+
+/** @const {object} */
+const percentageRegExp = new RegExp(/(\d+)\s*(%\s*of)\s*(\d+)/, 'm');
+
+/** @const {object} */
+const ratioRegExp = new RegExp(/(\d+\/\d+)\s*of\s*(\d+)/, 'm');
 
 /**
  * This function filters the given value with
@@ -85,8 +97,20 @@ const evaluate = exp => {
 		exp = exp.replace(operatorRegExp, textForOperators[operator]);
 	});
 
+	if (temperatureRegExp.test(exp)) {
+		return parseExp(exp, temperatureRegExp, 't');
+	}
+
 	if (currencyRegExp.test(exp.toUpperCase())) {
 		return parseExp(exp.toUpperCase(), currencyRegExp, 'c');
+	}
+
+	if (percentageRegExp.test(exp)) {
+		return parseExp(exp, percentageRegExp, 'p');
+	}
+
+	if (ratioRegExp.test(exp)) {
+		return parseExp(exp, ratioRegExp, 'r');
 	}
 
 	return mathJs.evaluate(exp);
