@@ -249,9 +249,9 @@ const appPopup = document.querySelectorAll('.modal')[0];
 
 	function init() {
 
-		BrowserWindow.getAllWindows()[0].webContents.on("devtools-opened", () => {
-			BrowserWindow.getAllWindows()[0].webContents.closeDevTools();
-		});
+		// BrowserWindow.getAllWindows()[0].webContents.on("devtools-opened", () => {
+		// 	BrowserWindow.getAllWindows()[0].webContents.closeDevTools();
+		// });
 
 		document
 			.querySelector('#app--minimize')

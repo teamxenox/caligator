@@ -2,6 +2,7 @@
 
 const mathJs = require('mathjs');
 const coreConv = require('./coreConv');
+const { string } = require('mathjs');
 
 /** @const {Object} */
 const textForOperators = {
@@ -18,6 +19,65 @@ const textForOperators = {
 	into: '*',
 	cross: '*'
 };
+
+
+//Variables in calculations
+let known_variables = {
+	"radius": 8.14,
+
+}
+
+const containsOnlyLetters = str => {return /^[a-zA-Z]+$/.test(str)};
+
+const findVariablesInExp = str => {
+	//finds the longest words, sliding window mechanism. If a symbol is not letter it moves to the next one
+	//if it is a letter it starts reading the following letters
+	//and reads until it stops containing words only
+	
+	if (str.length == 0){
+		return []
+	}
+	let variable_indexes = []
+	let current_name = ""
+	let start_i = 0
+	let end_i = 1
+	while (end_i < str.length){
+		
+		if (containsOnlyLetters(str.slice(start_i, end_i))){
+			end_i++;
+			current_name = str.slice(start_i, end_i)
+		} else {
+			console.log("pushing")
+			if (end_i - 1 > start_i){
+				variable_indexes.push([[start_i, end_i-1]])
+			}
+			start_i = end_i;
+			end_i++;
+		}
+	}
+	if (containsOnlyLetters(str.slice(start_i, end_i))){
+		variable_indexes.push([[start_i, end_i]])
+	}
+	return variable_indexes
+}
+
+const replaceVariablesInExp = exp => {
+	let variable_indexes = findVariablesInExp(exp);
+	console.log("Variable indexes: " + variable_indexes.length)
+	console.log(variable_indexes)
+	let mod_exp = exp; //Modified expression
+	for (let i = 0; i < variable_indexes.length; i++){
+		let index_pair = variable_indexes[i][0]
+		let variable = exp.slice(index_pair[0], index_pair[1])
+		let value = known_variables[variable]
+		console.log(variable)
+		console.log(value)
+		mod_exp = mod_exp.slice(0, index_pair[0]) + value + mod_exp.slice(index_pair[1])
+		console.log("Modified exp: " + mod_exp)
+	}
+	return mod_exp
+	console.log("----------------")
+}
 
 /** @const {string} */
 const currencyUnits = Object.keys(coreConv.currencyUnits).join('|');
@@ -93,6 +153,7 @@ const evaluate = exp => {
 };
 
 const main = exp => {
+	exp = replaceVariablesInExp(exp);
 	try {
 		return evaluate(exp)
 			? typeof evaluate(exp) !== 'function' // To filter function printing
