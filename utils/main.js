@@ -37,7 +37,7 @@ const findVariablesInExp = str => {
 	if (str.length == 0){
 		return []
 	}
-	let variable_indexes = []
+	let variables = []
 	let current_name = ""
 	let start_i = 0
 	let end_i = 1
@@ -49,32 +49,33 @@ const findVariablesInExp = str => {
 		} else {
 			console.log("pushing")
 			if (end_i - 1 > start_i){
-				variable_indexes.push([[start_i, end_i-1]])
+				variables.push(str.slice(start_i, end_i).trim())
 			}
 			start_i = end_i;
 			end_i++;
 		}
 	}
 	if (containsOnlyLetters(str.slice(start_i, end_i))){
-		variable_indexes.push([[start_i, end_i]])
+		variables.push(str.slice(start_i, end_i).trim())
 	}
-	return variable_indexes
+	return variables
 }
 
 const replaceVariablesInExp = exp => {
-	let variable_indexes = findVariablesInExp(exp);
-	console.log("Variable indexes: " + variable_indexes.length)
-	console.log(variable_indexes)
+	let variables = findVariablesInExp(exp);
+	console.log("variables")
+	console.log(variables)
 	let mod_exp = exp; //Modified expression
-	for (let i = 0; i < variable_indexes.length; i++){
-		let index_pair = variable_indexes[i][0]
-		let variable = exp.slice(index_pair[0], index_pair[1])
-		let value = known_variables[variable] || variable
-		console.log(variable + "-" + value + " index pair:")
-		console.log(index_pair)
+	for (let i = 0; i < variables.length; i++){
+		let variable = variables[i]
+		let loc = mod_exp.indexOf(variable)
+		let value = known_variables[variable]
+		if (value){
+			console.log(variable + "-" + value + " index pair:")
+			mod_exp = mod_exp.slice(0, loc) + value + mod_exp.slice(loc + variable.length)
+			console.log("Modified exp: " + mod_exp)
+		}
 		
-		mod_exp = mod_exp.slice(0, index_pair[0]+1) + value + mod_exp.slice(index_pair[1])
-		console.log("Modified exp: " + mod_exp)
 	}
 	return mod_exp
 	console.log("----------------")
