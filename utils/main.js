@@ -2,7 +2,7 @@
 
 const mathJs = require('mathjs');
 const coreConv = require('./coreConv');
-const { string } = require('mathjs');
+const { string, exp } = require('mathjs');
 
 /** @const {Object} */
 const textForOperators = {
@@ -69,16 +69,32 @@ const replaceVariablesInExp = exp => {
 	for (let i = 0; i < variable_indexes.length; i++){
 		let index_pair = variable_indexes[i][0]
 		let variable = exp.slice(index_pair[0], index_pair[1])
-		let value = known_variables[variable]
-		console.log(variable)
-		console.log(value)
-		mod_exp = mod_exp.slice(0, index_pair[0]) + value + mod_exp.slice(index_pair[1])
+		let value = known_variables[variable] || variable
+		console.log(variable + "-" + value + " index pair:")
+		console.log(index_pair)
+		
+		mod_exp = mod_exp.slice(0, index_pair[0]+1) + value + mod_exp.slice(index_pair[1])
 		console.log("Modified exp: " + mod_exp)
 	}
 	return mod_exp
 	console.log("----------------")
 }
 
+
+//Creates new entries in known_variables and changes exp only to it's value so that it is displayed as result
+//Example: "radius = 5*2+6" becomes "5*2+6" and known_values["radius"] = evaluate("5*2+6")
+//Note, also applies replaceVariablesInExp 
+const handlePossibleDeclarations = exp => {
+	let loc = exp.indexOf("=")
+	let variable = exp.slice(0, loc).replace(/\s+/g, '')
+	exp = exp.slice(loc+1)
+	exp = replaceVariablesInExp(exp);
+	let result = evaluate(exp)
+	console.log(variable + " - " + result)
+	known_variables[variable] = result
+	console.log(known_variables)
+	return exp
+}
 /** @const {string} */
 const currencyUnits = Object.keys(coreConv.currencyUnits).join('|');
 
@@ -153,7 +169,12 @@ const evaluate = exp => {
 };
 
 const main = exp => {
-	exp = replaceVariablesInExp(exp);
+	if (exp.includes("=")){
+		exp = handlePossibleDeclarations(exp); //Also applies replaceVariablesInExp
+	} else {
+		exp = replaceVariablesInExp(exp);
+	}
+
 	try {
 		return evaluate(exp)
 			? typeof evaluate(exp) !== 'function' // To filter function printing
