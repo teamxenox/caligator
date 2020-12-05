@@ -44,7 +44,7 @@ const findVariablesInExp = str => {
 			end_i++;
 			current_name = str.slice(start_i, end_i)
 		} else {
-			console.log("pushing")
+			
 			if (end_i - 1 > start_i){
 				variables.push(str.slice(start_i, end_i).trim())
 			}
@@ -60,22 +60,17 @@ const findVariablesInExp = str => {
 
 const replaceVariablesInExp = exp => {
 	let variables = findVariablesInExp(exp);
-	console.log("variables")
-	console.log(variables)
 	let mod_exp = exp; //Modified expression
 	for (let i = 0; i < variables.length; i++){
 		let variable = variables[i]
 		let loc = mod_exp.indexOf(variable)
 		let value = known_variables[variable]
 		if (value){
-			console.log(variable + "-" + value + " index pair:")
 			mod_exp = mod_exp.slice(0, loc) + value + mod_exp.slice(loc + variable.length)
-			console.log("Modified exp: " + mod_exp)
 		}
 		
 	}
 	return mod_exp
-	console.log("----------------")
 }
 
 
@@ -88,9 +83,7 @@ const handlePossibleDeclarations = exp => {
 	exp = exp.slice(loc+1)
 	exp = replaceVariablesInExp(exp);
 	let result = evaluate(exp)
-	console.log(variable + " - " + result)
 	known_variables[variable] = result
-	console.log(known_variables)
 	return exp
 }
 /** @const {string} */
