@@ -22,10 +22,7 @@ const textForOperators = {
 
 
 //Variables in calculations
-let known_variables = {
-	"radius": 8.14,
-
-}
+let known_variables = {}
 
 const containsOnlyLetters = str => {return /^[a-zA-Z]+$/.test(str)};
 
