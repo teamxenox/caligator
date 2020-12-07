@@ -2,6 +2,7 @@
 
 const mathJs = require('mathjs');
 const coreConv = require('./coreConv');
+const { string, exp } = require('mathjs');
 
 /** @const {Object} */
 const textForOperators = {
@@ -19,6 +20,86 @@ const textForOperators = {
 	cross: '*'
 };
 
+
+//Variables in calculations
+let known_variables = {}
+
+const containsOnlyLetters = str => {return /^[a-zA-Z]+$/.test(str)};
+
+const findVariablesInExp = str => {
+	//finds the longest words, sliding window mechanism. If a symbol is not letter it moves to the next one
+	//if it is a letter it starts reading the following letters
+	//and reads until it stops containing words only
+	
+	if (str.length == 0){
+		return []
+	}
+	let variables = []
+	let current_name = ""
+	let start_i = 0
+	let end_i = 1
+	while (end_i < str.length - 1){
+		//main sliding window loop
+		if (containsOnlyLetters(str.slice(start_i, end_i+1))){
+			end_i++;
+		} else {
+			if (end_i - 1 > start_i || containsOnlyLetters(str.slice(start_i, end_i))){
+				variables.push(str.slice(start_i, end_i).trim())
+			}
+			start_i = end_i;
+			end_i++;
+		}
+	}
+
+	//handle possible variable at the end, possibly because incorrect implementation of sliding window
+	//keeps moving the window start to the end from the last start position
+	//[1+var] => 1+var
+	//1[+var] => +var
+	//1+[var] => var => only letters, add to variables
+	while (start_i < str.length){
+		if (containsOnlyLetters(str.slice(start_i).trim())){
+			variables.push(str.slice(start_i).trim())
+			break;
+		} else {
+			start_i+=1;
+		}
+	}
+	return variables
+}
+
+const replaceVariablesInExp = exp => {
+	let variables = findVariablesInExp(exp);
+	let mod_exp = exp; //Modified expression
+	console.log()
+	console.log(variables)
+	console.log(known_variables)
+	console.log("original exp: " + exp)
+	for (let i = 0; i < variables.length; i++){
+		let variable = variables[i]
+		let loc = mod_exp.indexOf(variable)
+		let value = known_variables[variable]
+		if (value){
+			mod_exp = mod_exp.slice(0, loc) + value + mod_exp.slice(loc + variable.length)
+		}
+		
+	}
+	console.log("modified exp: " + mod_exp)
+	return mod_exp
+}
+
+
+//Creates new entries in known_variables and changes exp only to it's value so that it is displayed as result
+//Example: "radius = 5*2+6" becomes "5*2+6" and known_values["radius"] = evaluate("5*2+6")
+//Note, also applies replaceVariablesInExp 
+const handlePossibleDeclarations = exp => {
+	let loc = exp.indexOf("=")
+	let variable = exp.slice(0, loc).replace(/\s+/g, '')
+	exp = exp.slice(loc+1)
+	exp = replaceVariablesInExp(exp);
+	let result = evaluate(exp)
+	known_variables[variable] = result
+	return exp
+}
 /** @const {string} */
 const currencyUnits = Object.keys(coreConv.currencyUnits).join('|');
 
@@ -93,6 +174,11 @@ const evaluate = exp => {
 };
 
 const main = exp => {
+	if (exp.includes("=")){
+		exp = handlePossibleDeclarations(exp); //Also applies replaceVariablesInExp
+	} else {
+		exp = replaceVariablesInExp(exp);
+	}
 	try {
 		return evaluate(exp)
 			? typeof evaluate(exp) !== 'function' // To filter function printing

@@ -122,6 +122,13 @@ const getTokens = exp => {
  * @returns {Number} - result after performing operation
  */
 const operate = (operator, operand1, operand2) => {
+    if (operand1 == "test"){
+        operand1 = 1;
+    }
+    if (operand2 == "test")
+    {
+        operand2 = 1;
+    }
     switch (operator) {
         case '+':
             return operand1 + operand2;

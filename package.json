@@ -1,7 +1,7 @@
 {
 	"name": "caligator",
 	"productName": "caligator",
-	"version": "0.0.1-0",
+	"version": "0.1.0-0",
 	"description": "The best app calculator ever",
 	"license": "MIT",
 	"repository": "sarthology/caligator",
@@ -13,7 +13,6 @@
 	"scripts": {
 		"postinstall": "electron-builder install-app-deps",
 		"lint": "xo",
-		"test": "xo && npm run lint",
 		"start": "electron .",
 		"pack": "electron-builder --dir",
 		"dist": "electron-builder --macos --linux --windows --publish always",
@@ -44,13 +43,6 @@
 		"lint-staged": "^9.4.2",
 		"np": "^5.0.3",
 		"xo": "^0.24.0"
-	},
-	"xo": {
-		"prettier": true,
-		"envs": [
-			"node",
-			"browser"
-		]
 	},
 	"np": {
 		"publish": false,
