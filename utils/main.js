@@ -38,13 +38,11 @@ const findVariablesInExp = str => {
 	let current_name = ""
 	let start_i = 0
 	let end_i = 1
-	while (end_i < str.length){
+	while (end_i < str.length - 1){
 		
-		if (containsOnlyLetters(str.slice(start_i, end_i))){
+		if (containsOnlyLetters(str.slice(start_i, end_i+1))){
 			end_i++;
-			current_name = str.slice(start_i, end_i)
 		} else {
-			
 			if (end_i - 1 > start_i){
 				variables.push(str.slice(start_i, end_i).trim())
 			}
@@ -52,8 +50,8 @@ const findVariablesInExp = str => {
 			end_i++;
 		}
 	}
-	if (containsOnlyLetters(str.slice(start_i, end_i))){
-		variables.push(str.slice(start_i, end_i).trim())
+	if (containsOnlyLetters(str.slice(start_i))){
+		variables.push(str.slice(start_i).trim())
 	}
 	return variables
 }
@@ -165,7 +163,6 @@ const main = exp => {
 	} else {
 		exp = replaceVariablesInExp(exp);
 	}
-
 	try {
 		return evaluate(exp)
 			? typeof evaluate(exp) !== 'function' // To filter function printing
