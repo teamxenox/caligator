@@ -39,19 +39,30 @@ const findVariablesInExp = str => {
 	let start_i = 0
 	let end_i = 1
 	while (end_i < str.length - 1){
-		
+		//main sliding window loop
 		if (containsOnlyLetters(str.slice(start_i, end_i+1))){
 			end_i++;
 		} else {
-			if (end_i - 1 > start_i){
+			if (end_i - 1 > start_i || containsOnlyLetters(str.slice(start_i, end_i))){
 				variables.push(str.slice(start_i, end_i).trim())
 			}
 			start_i = end_i;
 			end_i++;
 		}
 	}
-	if (containsOnlyLetters(str.slice(start_i))){
-		variables.push(str.slice(start_i).trim())
+
+	//handle possible variable at the end, possibly because incorrect implementation of sliding window
+	//keeps moving the window start to the end from the last start position
+	//[1+var] => 1+var
+	//1[+var] => +var
+	//1+[var] => var => only letters, add to variables
+	while (start_i < str.length){
+		if (containsOnlyLetters(str.slice(start_i).trim())){
+			variables.push(str.slice(start_i).trim())
+			break;
+		} else {
+			start_i+=1;
+		}
 	}
 	return variables
 }
@@ -59,6 +70,10 @@ const findVariablesInExp = str => {
 const replaceVariablesInExp = exp => {
 	let variables = findVariablesInExp(exp);
 	let mod_exp = exp; //Modified expression
+	console.log()
+	console.log(variables)
+	console.log(known_variables)
+	console.log("original exp: " + exp)
 	for (let i = 0; i < variables.length; i++){
 		let variable = variables[i]
 		let loc = mod_exp.indexOf(variable)
@@ -68,6 +83,7 @@ const replaceVariablesInExp = exp => {
 		}
 		
 	}
+	console.log("modified exp: " + mod_exp)
 	return mod_exp
 }
 
