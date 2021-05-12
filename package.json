@@ -35,7 +35,7 @@
 		"electron-unhandled": "^2.2.0",
 		"electron-updater": "^4.0.6",
 		"electron-util": "^0.12.0",
-		"mathjs": "^6.2.2"
+		"mathjs": "^7.5.1"
 	},
 	"devDependencies": {
 		"electron": "4.0.1",
