@@ -1,7 +1,7 @@
 {
-	"name": "Caligator",
+	"name": "caligator",
 	"productName": "caligator",
-	"version": "0.0.2",
+	"version": "0.0.5",
 	"description": "The smartest calculator app ever",
 	"license": "MIT",
 	"repository": {
@@ -61,7 +61,7 @@
 		"releaseDraft": false
 	},
 	"build": {
-		"appId": "com.riju.caligator",
+		"appId": "com.arighna.caligator",
 		"mac": {
 			"category": "public.app-category.utility",
 			"icon": "build/icon.png"

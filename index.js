@@ -36,8 +36,8 @@ const createMainWindow = async () => {
 		title: app.getName(),
 		center: true,
 		show: false,
-		width: 350,
-		height: 350,
+		width: 450,
+		height: 450,
 		frame: false,
 		icon: path.join(__dirname, '/build/icon.png'),
 		webPreferences:{

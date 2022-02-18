@@ -18,11 +18,11 @@ const showPreferences = () => {
 const helpSubmenu = [
 	openUrlMenuItem({
 		label: 'Website',
-		url: 'https://github.com/sarthology/caligator'
+		url: 'https://github.com/riju-stone/caligator'
 	}),
 	openUrlMenuItem({
 		label: 'Source Code',
-		url: 'https://github.com/sarthology/caligator'
+		url: 'https://github.com/riju-stone/caligator'
 	}),
 	{
 		label: 'Report an Issue…',
@@ -36,7 +36,7 @@ const helpSubmenu = [
 ${debugInfo()}`;
 
 			openNewGitHubIssue({
-				user: 'sarthology',
+				user: 'riju-stone',
 				repo: 'caligator',
 				body
 			});
@@ -51,7 +51,7 @@ if (!is.macos) {
 		},
 		aboutMenuItem({
 			icon: path.join(__dirname, 'static', 'icon.png'),
-			text: 'Created by Sarthak Sharma'
+			text: 'Created by Arighna Chakraborty'
 		})
 	);
 }

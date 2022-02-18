@@ -26,7 +26,7 @@ module.exports = async function(config) {
 		const axios = require('axios');
 
 		const response = await axios(
-			`https://api.exchangeratesapi.io/latest?base=USD`
+			`https://api.exchangeratesapi.io/latest?base=INR`
 		);
 
 		if (response.status === 200) {
