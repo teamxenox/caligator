@@ -52,8 +52,6 @@
 2. **HACK AWAY!** 🔨🔨🔨
 3. 🔃 Create a new pull request.
 
-
-
 ### Run
 
 ```
@@ -71,22 +69,6 @@ $ npm run release
 ```
 
 Then edit the automatically created GitHub Releases draft and publish.
-
-## Contributors
-
-- [Sarthak Sharma](https://github.com/sarthology)
-- [Krishna Sarath](https://github.com/SarathSantoshDamaraju)
-- [Rajesh Prasad](https://github.com/Stereoraj)
-- [Bassem Mohamed](https://github.com/BassemMohamed)
-- [Pavan Jadhaw](https://github.com/pavanjadhaw)
-
-## Links
-
-- [Product Hunt post](https://www.producthunt.com/posts/caligator)
-
-## License
-
-- [MIT License](https://github.com/sarthology/caligator/blob/master/license.md)
 
 ## Buy Me a Coffee
 
